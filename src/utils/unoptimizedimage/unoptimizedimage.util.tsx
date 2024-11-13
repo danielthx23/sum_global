@@ -1,6 +1,6 @@
 import Image, { ImageProps } from 'next/image';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface UnoptimizedImageProps extends ImageProps {}
 
 const UnoptimizedImage = (props: UnoptimizedImageProps) => {

@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --gradientcolor: #fff9c8;
+  --backgroundlight: #e8e8e8;
+  --foregroundlight: #0a0a0a;
+  --backgroundopacity80: rgba(255,255,255,0.8);
+  --foregroundopacity80: rgba(0,0,0,0.8);
+  --foregroundopacity20: rgba(0,0,0,0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ffffff;
+    --gradientcolor: #000015;
+    --backgroundlight: #0a0a0a;
+    --foregroundlight: #e8e8e8;
+    --backgroundopacity80: rgba(0,0,0,0.8);
+    --foregroundopacity80: rgba(255,255,255,0.8);
+    --foregroundopacity20: rgba(255,255,255,0.2);
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}

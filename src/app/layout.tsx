@@ -4,7 +4,6 @@ import "./globals.css";
 import DrawerProvider from "@/contexts/drawercontext/drawerprovider.context";
 import Nav from "@/components/navbar/navbar.component";
 import Footer from "@/components/footer/footer.component";
-import { ThemeProvider } from "next-themes";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,13 +31,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <ThemeProvider attribute="class">
         <DrawerProvider>
           <Nav />
           {children}
           <Footer />
         </DrawerProvider>
-      </ThemeProvider>
       </body>
     </html>
   );

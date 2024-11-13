@@ -1,7 +1,10 @@
+
+
 const CarouselSlide = () => {
   return (
-    <div>
-    </div>
+    <section>
+
+    </section>
   );
 }
 

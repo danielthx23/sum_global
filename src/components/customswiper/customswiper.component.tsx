@@ -5,39 +5,60 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperProps, SwiperRef, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 
 interface CustomSwiperProps extends SwiperProps {
     id: string;
     slides: ReactNode[];
-    setChangePerIndex?: (slideIndex: number) => void; 
+    arrowColor?: string; 
+    bulletColor?: string; 
+    bulletActiveColor?: string; 
 }
 
 const CustomSwiper = ({
     id,
     slides,
-    setChangePerIndex,
+    arrowColor,
+    bulletColor,
+    bulletActiveColor,
     ...swiperProps
 }: CustomSwiperProps) => {
     const swiperRef = useRef<SwiperRef>(null);
 
     return (
-        <Swiper
-            id={`Swiper-${id}`}
-            ref={swiperRef}
-            onRealIndexChange={(swiperInstance) => {
-                const currentIndex = swiperInstance.realIndex;
-                if (setChangePerIndex) {
-                    setChangePerIndex(currentIndex);
+        <>
+            <style jsx global>{`
+                #Swiper-${id} .swiper-button-next,
+                #Swiper-${id} .swiper-button-prev {
+                    color: ${arrowColor};
                 }
-            }}
-            {...swiperProps}
-        >
-            {slides.map((slide, index) => (
-                <SwiperSlide key={`${id}-slide-${index}`} id={`${id}-slide-${index}`}>
-                    {slide}
-                </SwiperSlide>
-            ))}
-        </Swiper>
+
+                #Swiper-${id} .swiper-pagination-bullet {
+                    background-color: ${bulletColor};
+                }
+
+                #Swiper-${id} .swiper-pagination-bullet-active {
+                    background-color: ${bulletActiveColor};
+                }
+            `}</style>
+            
+            <Swiper
+                id={`Swiper-${id}`}
+                ref={swiperRef}
+                modules={[Navigation, Pagination]}
+                style={{
+                    "--swiper-navigation-color": arrowColor,      
+                    "--swiper-pagination-color": bulletActiveColor, 
+                } as React.CSSProperties}
+                {...swiperProps}
+            >
+                {slides.map((slide, index) => (
+                    <SwiperSlide key={`${id}-slide-${index}`} id={`${id}-slide-${index}`}>
+                        {slide}
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </>
     );
 };
 

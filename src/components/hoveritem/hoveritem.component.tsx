@@ -46,8 +46,8 @@ const HoverItem = ({ itemTitle, placement, tooltipItems, icon }: HoverItemProps)
             sx: {
               width: '50vw',
               height: 'fit-content',
-              bgcolor: 'var(--backgroundlight)',
-              outline: '1px solid var(--backgroundlight)',
+              bgcolor: 'var(--backgroundopacity80)',
+              outline: '1px solid var(--foregroundopacity20)',
               backdropFilter: 'blur(4px)',
               marginInline: '4rem',
               zIndex: 20,
@@ -55,14 +55,13 @@ const HoverItem = ({ itemTitle, placement, tooltipItems, icon }: HoverItemProps)
               boxSizing: 'content-box',
               '& .MuiTooltip-arrow': {
                 color: 'var(--backgroundlight)',
-                backdropFilter: 'blur(4px)',
               },
             },
           },
         }}
         placement={placement}>
-        <div className={`flex items-center gap-2 border py-2 px-5 rounded-full ${!open ? 'border-foregroundlight bg-backgroundlight text-foregroundlight'
-          : 'text-foregroundlight border-foregroundlight bg-transparent backdrop-blur-sm '} transition-all ease-in-out`}>
+        <div className={`flex items-center gap-2 border py-2 px-5 rounded-full ${!open ? 'border-foregroundopacity20 bg-backgroundlight text-foregroundlight'
+          : 'text-foregroundlight border-foregroundopacity80 bg-transparent backdrop-blur-sm '} transition-all ease-in-out`}>
           {icon}
           <h1 className="text-sm">{itemTitle}</h1>
           <BsChevronDown size={"1.1rem"} className={`${open && 'rotate-180 text-foreground '} transition-all ease-in-out`} />

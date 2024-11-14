@@ -2,7 +2,7 @@
 
 
 import useDrawer from "@/hooks/usedrawer/usedrawer.hook";
-import ToolTipItem from "@/types/tooltipitem/tooltipitem.interface";
+import ToolTipItem from "@/types/tooltipitem/tooltipitem.type";
 import { Drawer } from "@mui/material";
 import Link from "next/link";
 import { ReactElement, useEffect, useState } from "react";

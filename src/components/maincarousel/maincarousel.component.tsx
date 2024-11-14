@@ -1,6 +1,6 @@
 'use client'
 
-import CarouselSlide from "@/types/maincarouselslide/maincarouselslide.interface";
+import CarouselSlide from "@/types/maincarouselslide/maincarouselslide.type";
 import CustomSwiper from "../customswiper/customswiper.component";
 import MainCarouselSlide from "../maincarouselslide/maincarouselslide.component";
 import { Navigation, Pagination } from "swiper/modules";
@@ -12,24 +12,18 @@ interface MainCarouselProps {
 
 const MainCarousel = ({ slides }: MainCarouselProps) => {
 
-  const [slideColor, setSlideColor] = useState<string>("#FFE205");
+  const [slideColor, setSlideColor] = useState<string>("#34325e");
 
   const changeSlideColorPerIndex = (index: number) => {
     switch (index) {
       case 0:
-        setSlideColor("#FFE205"); 
+        setSlideColor("#34325e"); 
         break;
       case 1:
-        setSlideColor("#33FF57"); 
+        setSlideColor("#6dff80"); 
         break;
       case 2:
-        setSlideColor("#3357FF"); 
-        break;
-      case 3:
-        setSlideColor("#F1C40F"); 
-        break;
-      default:
-        setSlideColor("#FFFFFF"); 
+        setSlideColor("#59ffac"); 
         break;
     }
   };
@@ -37,7 +31,7 @@ const MainCarousel = ({ slides }: MainCarouselProps) => {
 return (
   <section
     style={{ backgroundColor: slideColor }} 
-    className={`h-[900px] bg-gradient-to-b from-[rgba(0,0,0,0)] from-60% to-background to-90% px-[2%] transition-all ease-in-out duration-700`}
+    className={`h-[900px] bg-gradient-to-b from-[rgba(0,0,0,0)] to-background to-100% px-[2%] transition-all ease-in-out duration-700`}
   >
     <CustomSwiper 
     id={"maincarousel"}

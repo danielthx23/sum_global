@@ -1,6 +1,6 @@
 "use client"
 
-import ToolTipItem from "@/types/tooltipitem/tooltipitem.interface";
+import ToolTipItem from "@/types/tooltipitem/tooltipitem.type";
 import { Tooltip } from "@mui/material";
 import { ReactElement, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";

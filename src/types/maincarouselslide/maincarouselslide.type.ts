@@ -1,4 +1,5 @@
 import { StaticImageData } from "next/image";
+import { ReactNode } from "react";
 
 export default interface CarouselSlide {
     title: string;
@@ -7,4 +8,5 @@ export default interface CarouselSlide {
     alt: string;
     subtitle: string;
     textColor: string;
+    listItems?: ReactNode;
   }

@@ -11,13 +11,13 @@ interface CardFornecimentoProps {
 const CardFornecimento = ({ fornecimento }: CardFornecimentoProps) => {
     return (
         <div className="w-full h-[500px] border border-foregroundopacity20 shadow-lg rounded-lg p-4 flex flex-col items-center flex-1 gap-4 bg-gradient-to-bl from-backgroundlight to-gradientcolor backdrop-blur-md">
-            <figure className="flex items-center justify-center rounded-lg">
+            <figure className="w-full flex items-center justify-center rounded-lg">
                 <Image
                     src={fornecimento.fornecimentoImagem}
                     width={400}
                     height={300}
                     alt={fornecimento.tipoDeFornecimento.origem}
-                    className="h-44 object-cover rounded-lg"
+                    className="h-44 object-cover w-full rounded-lg"
                 />
             </figure>
             <aside className="w-full flex gap-4 px-4 items-center text-foreground">

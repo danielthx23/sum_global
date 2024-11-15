@@ -31,7 +31,7 @@ const MainCarousel = ({ slides }: MainCarouselProps) => {
 return (
   <section
     style={{ backgroundColor: slideColor }} 
-    className={`h-[750px] bg-gradient-to-b from-[rgba(0,0,0,0)] to-background to-100% px-[2%] transition-all ease-in-out duration-700`}
+    className={`h-[650px] bg-gradient-to-b from-[rgba(0,0,0,0)] to-background to-100% px-[2%] transition-all ease-in-out duration-700`}
   >
     <CustomSwiper 
     id={"maincarousel"}

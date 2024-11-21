@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 const USER_API_URL = process.env.JAVA_API_URL;
 
-export async function GET({ params }: { params: Promise<{ idUsuario: string }> }): Promise<NextResponse> {
+export async function GET(request: Request, { params }: { params: Promise<{ idUsuario: string }> }): Promise<NextResponse> {
   const idUsuario = (await params).idUsuario;
 
   try {

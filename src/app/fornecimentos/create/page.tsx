@@ -14,14 +14,10 @@ const FornecimentoPostForm = () => {
   const { usuario } = useAuth();
   const [fornecedorData, setFornecedorData] = useState();
 
-  if (!usuario || usuario.tipoConta !== 'fornecedor') {
-    return <SemPermissao />;
-  }
-
   useEffect(() => {
     const fetchFornecedorData = async () => {
         try {
-          const response = await fetch(`/api/usuario/${usuario.idUsuario}`);
+          const response = await fetch(`/api/usuario/${usuario?.idUsuario}`);
           if (!response.ok) {
             throw new Error('Falha ao carregar dados do usuario');
           }
@@ -34,6 +30,10 @@ const FornecimentoPostForm = () => {
 
     fetchFornecedorData();
   }, [usuario, fornecedorData]); 
+
+  if (!usuario || usuario.tipoConta !== 'fornecedor') {
+    return <SemPermissao />;
+  }
 
   const submitCallback = async (values: FormState) => {
     try {

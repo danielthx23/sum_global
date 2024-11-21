@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import Fornecimento from '@/types/fornecimento/fornecimento.type';
 import Input from "@/components/input/input.component"; // Componente de entrada
 import Textarea from "@/components/textarea/textarea.component"; // Componente de textarea
-import useForm, { FormState } from "@/hooks/useform/useform.hook"; // Hook de formulário
+import useForm from "@/hooks/useform/useform.hook"; // Hook de formulário
 import Button from '@/components/button/button.component';
 import Loader from '@/components/loader/loader.component';
 import { toastAlerta } from '@/utils/toastalert/toastalert.util';

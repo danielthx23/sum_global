@@ -146,7 +146,7 @@ const LoginForm = () => {
         target: { name: 'cpf', value: '' },
       } as React.ChangeEvent<HTMLInputElement>);
     }
-  }, [formattedValue]);
+  }, [formattedValue, handleChange]);
 
   return (
     <form

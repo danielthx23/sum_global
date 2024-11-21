@@ -23,7 +23,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     const data = await response.json();
     return NextResponse.json(data, { status: 201 }); 
   } catch (error) {
-    return NextResponse.json({ error: 'Falha salvando post' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha salvando post: ' + error }, { status: 500 });
   }
 }
 
@@ -37,6 +37,6 @@ export async function GET(): Promise<NextResponse> {
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao recuperar posts' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao recuperar posts: ' + error }, { status: 500 });
   }
 }

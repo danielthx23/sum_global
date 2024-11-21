@@ -60,13 +60,9 @@ const UpdateForm = () => {
 
   const {
     data,
-    setData,
     loadingSubmit,
     handleChange,
-    handleSubmit,
-    handleErrors,
-    errors,
-    errorsCount
+    errors
   } = useForm(formRef, initialState, submitCallback, submitErrorCallback, validateForm)
 
   const [currentStep, setCurrentStep] = useState(1)
@@ -108,7 +104,7 @@ const UpdateForm = () => {
       toastAlerta('Usuário atualizado com sucesso!', "sucesso");
       router.push('/');
     } catch (error) {
-      toastAlerta("Erro ao atualizar usuario", 'erro')
+      toastAlerta("Erro ao atualizar usuario: " + error, 'erro')
     }
   }
 

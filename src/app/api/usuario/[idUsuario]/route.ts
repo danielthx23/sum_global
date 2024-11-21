@@ -14,7 +14,7 @@ export async function GET({ params }: { params: Promise<{ idUsuario: string }> }
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha recuperando usuário' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha recuperando usuário: ' + error  }, { status: 500 });
   }
 }
 

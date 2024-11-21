@@ -30,7 +30,7 @@ const ProfilePage = () => {
         setUserData(data)
         toastAlerta('Dados carregados com sucesso!', 'sucesso') 
       } catch (error) {
-        toastAlerta('Falha ao carregar dados do usuário. Tente novamente.', 'erro')
+        toastAlerta('Falha ao carregar dados do usuário. Tente novamente: ' + error, 'erro')
       } finally {
         setLoading(false)
       }

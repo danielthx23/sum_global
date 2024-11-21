@@ -25,7 +25,7 @@ const StepForm = ({
   handlePrevStep,
   formRef,
 }: StepFormProps) => {
-  const { title, content, onSubmit, onNext, onPrev } = steps[currentStep - 1];
+  const { content, onSubmit, onNext, onPrev } = steps[currentStep - 1];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -33,7 +33,7 @@ const FornecimentoPostForm = () => {
       };
 
     fetchFornecedorData();
-  }, [usuario]); 
+  }, [usuario, fornecedorData]); 
 
   const submitCallback = async (values: FormState) => {
     try {

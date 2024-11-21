@@ -50,7 +50,7 @@ const Posts = () => {
         setFilteredPosts(filtered);
         setDisplayedPosts(filtered.slice(0, perPage));
         setHasMore(filtered.length > perPage);
-    }, [searchQuery, posts]);
+    }, [searchQuery, posts, perPage]);
 
     const loadMore = () => {
         const nextPage = page + 1;

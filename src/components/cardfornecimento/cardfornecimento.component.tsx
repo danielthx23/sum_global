@@ -27,7 +27,7 @@ const CardFornecimento = ({ fornecimento }: CardFornecimentoProps) => {
             </figure>
             <aside className="w-full flex gap-4 px-4 items-center text-foreground">
                 <Image
-                    src={fornecimento.fornecedor.usuario.imagemFoto ? fornecimento.fornecedor.usuario.imagemFoto : 'https://shopify.dev/assets/templated-apis-screenshots/pos-ui-extensions/2024-10/image-default.png'}
+                    src={fornecimento.fornecedor?.usuario.imagemFoto ? fornecimento.fornecedor?.usuario.imagemFoto : 'https://shopify.dev/assets/templated-apis-screenshots/pos-ui-extensions/2024-10/image-default.png'}
                     width={45}
                     height={45}
                     alt="Imagem da Fornecedora"

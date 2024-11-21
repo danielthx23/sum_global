@@ -1,12 +1,12 @@
 import Fornecedor from "../fornecedor/fornecedor.type";
-import TipoDeFornecimento from "../tipodefornecimento/tipodefornecimento.type";
 
 export default interface Fornecimento {
-    fornecimentoId: number; 
-    fornecedor: Fornecedor;
-    fornecimentoImagem: string;
-    tipoDeContratacao: string;
-    precoPorKWH: number; 
-    dataDeVencimento: Date; 
-    tipoDeFornecimento: TipoDeFornecimento;
+    idFornecimento: number; 
+    fornecedor?: Fornecedor;
+    fornecimentoImagem?: string;
+    tipoContrato: string;
+    precoKwh: number; 
+    dataVencimento: Date; 
+    tipoEnergia: string;
+    processoObtencao: string;
 }

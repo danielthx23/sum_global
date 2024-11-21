@@ -1,11 +1,10 @@
 import Consumidor from "../consumidor/consumidor.type";
-import TipoDeCertificado from "../tipodecertificado/tipodecertificado.type";
 
 export default interface Certificado {
-    certificadoId: number;
+    idCertificado: number;
     consumidor: Consumidor;
-    tipoDeCertificado: TipoDeCertificado;
-    nomeDoCertificado: string;
+    nomeCertificado: string;
     descricao: string;
-    metodoDeObter: string;
+    metodoObter: string;
+    tipoCertificado: string;
 }

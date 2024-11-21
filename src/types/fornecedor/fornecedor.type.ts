@@ -1,12 +1,12 @@
 import Usuario from "../usuario/usuario.type";
 
 export default interface Fornecedor {
-    fornecedorId: number;
+    idFornecedor: number;
     usuario: Usuario;
     energiaPrimaria: string;
-    dataDeOperacao: Date; 
+    dataOperacao: Date; 
     status: string;
-    capacidadeDeEnergia: number; 
+    capacidade: number; 
     licenciatura: string;
     regiao: string;
 }

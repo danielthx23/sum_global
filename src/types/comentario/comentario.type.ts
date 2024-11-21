@@ -1,9 +1,11 @@
+import Post from "../post/post.type";
 import Usuario from "../usuario/usuario.type";
 
 export default interface Comentario {
-    comentarioId: number; 
+    idComentario: number; 
     usuario: Usuario; 
     titulo: string; 
     texto: string; 
-    imagem: string;
+    imagem?: string;
+    post: Post;
 }

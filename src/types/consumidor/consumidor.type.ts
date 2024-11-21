@@ -1,13 +1,13 @@
 import Usuario from "../usuario/usuario.type";
 
 export default interface Consumidor {
-    consumidorId: number; 
-    classeDeConsumo: string;
-    tipoDeConsumo: string;
+    idConsumidor: number; 
+    classeConsumo: string;
+    tipoConsumo: string;
     consumoEnergetico: number; 
-    numeroDoMedidor: string;
+    numeroMedidor: string;
     tarifa: number; 
-    consumoDeEnergiaMes: number; 
-    ultimaDataDeLeitura: Date;
+    consumoMes: number; 
+    ultimaLeitura: Date;
     usuario: Usuario;
 }

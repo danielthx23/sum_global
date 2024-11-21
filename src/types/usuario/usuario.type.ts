@@ -1,12 +1,23 @@
+import Consumidor from "../consumidor/consumidor.type";
+import Email from "../email/email.type";
+import Endereco from "../endereco/endereco.type";
+import Fornecedor from "../fornecedor/fornecedor.type";
+import Telefone from "../telefone/telefone.type";
+
 export default interface Usuario {
     idUsuario: number;
-    nmUsuario: string;
-    razaoSocial: string;
+    nomeUsuario: string;
+    razaoSocial?: string;
     cnpj?: string;
     cpf?: string;
-    flConta: string;
-    nmSenha: string;
-    imgFoto: string;
-    dsTokem: string;
-    dtCadastro: Date; 
+    tipoConta: string;
+    numeroSenha: string;
+    imagemFoto?: string;
+    valorToken?: string;
+    dataCadastro: Date; 
+    telefones: Telefone[];
+    enderecos: Endereco[];
+    emails: Email[];
+    consumidor?: Consumidor;
+    fornecedor?: Fornecedor;
 }

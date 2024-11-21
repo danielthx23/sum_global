@@ -2,12 +2,12 @@ import Usuario from "../usuario/usuario.type";
 
 export default interface Endereco {
     idEndereco: number; 
-    nrCep: string;
-    nrEndereco: number; 
-    nmBairro: string; 
-    nmEstado: string; 
-    nmCidade: string,
-    nmRua: string; 
-    dsComplemento: string; 
-    usuario: Usuario;
+    numeroCep: string;
+    numeroEndereco: number; 
+    nomeBairro: string; 
+    nomeEstado: string; 
+    nomeCidade: string,
+    nomeRua: string; 
+    complemento: string; 
+    usuario?: Usuario;
 }

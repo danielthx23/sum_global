@@ -32,15 +32,15 @@ export async function PUT(request: Request, { params }: { params: Promise<{ idCo
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { commentId: string } }): Promise<NextResponse> {
-  const { commentId } = params;
+export async function DELETE(request: Request, { params }: { params: Promise<{ idComentario: string }> }): Promise<NextResponse> {
+  const idComentario = (await params).idComentario;
 
-  if (!commentId) {
+  if (!idComentario) {
     return NextResponse.json({ error: 'IdComentário é necessário!' }, { status: 400 });
   }
 
   try {
-    const response = await fetch(`${POST_API_URL}/comentario/${commentId}`, {
+    const response = await fetch(`${POST_API_URL}/comentario/${idComentario}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

@@ -45,98 +45,94 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="profile-container">
-      <h1>Perfil do Usuário</h1>
-      <div className="profile-details">
-        <div className="profile-photo">
-          <Image
-            src={userData?.imagemFoto || 'https://shopify.dev/assets/templated-apis-screenshots/pos-ui-extensions/2024-10/image-default.png'}
-            alt="Foto de Perfil"
-            width={150}
-            height={150}
-            className="rounded-full"
-          />
-        </div>
-        <div className="profile-info">
-          <h2>{userData?.nomeUsuario}</h2>
-          {userData?.tipoConta === 'fornecedor' && (
-            <h3>Razão Social: {userData?.razaoSocial}</h3>
-          )}
-          {userData?.tipoConta === 'consumidor' && (
-            <h3>CPF: {userData?.cpf}</h3>
-          )}
-          {userData?.tipoConta === 'fornecedor' ? (
-            <p>CNPJ: {userData?.cnpj}</p>
-          ) : (
-            <p>CPF: {userData?.cpf}</p>
-          )}
-          <p>Data de Cadastro: {userData?.dataCadastro.toLocaleDateString()}</p>
-        </div>
-      </div>
-
-      <div className="contact-info">
-        <h3>Informações de Contato</h3>
-        {userData?.emails && userData.emails.length > 0 && (
-          <div>
-            <h4>Emails:</h4>
-            <ul>
-              {userData.emails.map((email) => (
-                <li key={email.idEmail}>{email.email}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {userData?.telefones && userData.telefones.length > 0 && (
-          <div>
-            <h4>Telefones:</h4>
-            <ul>
-              {userData.telefones.map((telefone) => (
-                <li key={telefone.idTelefone}>{telefone.DDI} {telefone.DDD} {telefone.numeroTelefone}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-
-      <div className="address-info">
-        <h3>Endereços</h3>
-        {userData?.enderecos && userData.enderecos.length > 0 ? (
-          <ul>
-            {userData.enderecos.map((endereco) => (
-              <li key={endereco.idEndereco}>
-                {endereco.nomeRua}, {endereco.numeroEndereco}, {endereco.nomeBairro}, {endereco.nomeCidade}, {endereco.nomeEstado} - {endereco.numeroCep}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Nenhum endereço cadastrado.</p>
-        )}
-      </div>
-
-      {userData?.tipoConta === 'consumidor' && userData?.consumidor && (
-        <div className="consumidor-info">
-          <h3>Dados do Consumidor</h3>
-          <p>Classe de Consumo: {userData.consumidor.classeConsumo}</p>
-          <p>Tipo de Consumo: {userData.consumidor.tipoConsumo}</p>
-          <p>Consumo Energético: {userData.consumidor.consumoEnergetico} kWh</p>
-          <p>Número do Medidor: {userData.consumidor.numeroMedidor}</p>
-          <p>Tarifa: R$ {userData.consumidor.tarifa}</p>
-          <p>Consumo de Energia no Mês: {userData.consumidor.consumoMes} kWh</p>
-          <p>Última Data de Leitura: {new Date(userData.consumidor.ultimaLeitura).toLocaleDateString()}</p>
-        </div>
-      )}
-
-      {userData?.tipoConta === 'fornecedor' && userData?.fornecedor && (
-        <div className="fornecedor-info">
-          <h3>Dados do Fornecedor</h3>
-          <p>Energia Primária: {userData.fornecedor.energiaPrimaria}</p>
-          <p>Capacidade do Fornecedor: {userData.fornecedor.capacidade}</p>
-          <p>Licenciatura: {userData.fornecedor.licenciatura}</p>
-          <p>Status: {userData.fornecedor.status}</p>
-          <p>Data de Registro: {new Date(userData.fornecedor.dataOperacao).toLocaleDateString()}</p>
-        </div>
-      )}
+    <div className="profile-container bg-backgroundlight p-6 rounded-lg shadow-md">
+  <h1 className="text-2xl font-bold text-foreground mb-4">Perfil do Usuário</h1>
+  <div className="profile-details flex items-center mb-6">
+    <div className="profile-photo mr-4">
+      <Image
+        src={userData?.imagemFoto || 'https://shopify.dev/assets/templated-apis-screenshots/pos-ui-extensions/2024-10/image-default.png'}
+        alt="Foto de Perfil"
+        width={150}
+        height={150}
+        className="rounded-full border-2 border-foreground opacity-80"
+      />
     </div>
+    <div className="profile-info">
+      <h2 className="text-xl font-semibold text-foreground">{userData?.nomeUsuario}</h2>
+        <h3 className="text-lg text-foregroundlight">Razão Social: {userData?.razaoSocial}</h3>
+        <h3 className="text-lg text-foregroundlight">CPF: {userData?.cpf}</h3>
+      <h3 className="text-sm text-foregroundopacity80">
+        CNPJ: {userData?.cnpj}
+      </h3>
+      <p className="text-sm text-foregroundopacity80">Data de Cadastro: {userData?.dataCadastro.toLocaleDateString()}</p>
+    </div>
+  </div>
+
+  <div className="contact-info mb-6">
+    <h3 className="text-lg font-semibold text-foreground">Informações de Contato</h3>
+    {userData?.emails && userData.emails.length > 0 && (
+      <div>
+        <h4 className="font-semibold text-foregroundlight">Emails:</h4>
+        <ul className="list-disc list-inside">
+          {userData.emails.map((email) => (
+            <li key={email.idEmail} className="text-foregroundopacity80">{email.email}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+    {userData?.telefones && userData.telefones.length > 0 && (
+      <div>
+        <h4 className="font-semibold text-foregroundlight">Telefones:</h4>
+        <ul className="list-disc list-inside">
+          {userData.telefones.map((telefone) => (
+            <li key={telefone.idTelefone} className="text-foregroundopacity80">
+              {telefone.DDI} {telefone.DDD} {telefone.numeroTelefone}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+
+  <div className="address-info mb-6">
+    <h3 className="text-lg font-semibold text-foreground">Endereços</h3>
+    {userData?.enderecos && userData.enderecos.length > 0 ? (
+      <ul className="list-disc list-inside">
+        {userData.enderecos.map((endereco) => (
+          <li key={endereco.idEndereco} className="text-foregroundopacity80">
+            {endereco.nomeRua}, {endereco.numeroEndereco}, {endereco.nomeBairro}, {endereco.nomeCidade}, {endereco.nomeEstado} - {endereco.numeroCep}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p className="text-foregroundopacity80">Nenhum endereço cadastrado.</p>
+    )}
+  </div>
+
+  {userData?.tipoConta === 'consumidor' && userData?.consumidor && (
+    <div className="consumidor-info mb-6">
+      <h3 className="text-lg font-semibold text-foreground">Dados do Consumidor</h3>
+      <p className="text-foregroundopacity80">Classe de Consumo: {userData.consumidor.classeConsumo}</p>
+      <p className="text-foregroundopacity80">Tipo de Consumo: {userData.consumidor.tipoConsumo}</p>
+      <p className="text-foregroundopacity80">Consumo Energético: {userData.consumidor.consumoEnergetico} kWh</p>
+      <p className ="text-foregroundopacity80">Número do Medidor: {userData.consumidor.numeroMedidor}</p>
+      <p className="text-foregroundopacity80">Tarifa: R$ {userData.consumidor.tarifa}</p>
+      <p className="text-foregroundopacity80">Consumo de Energia no Mês: {userData.consumidor.consumoMes} kWh</p>
+      <p className="text-foregroundopacity80">Última Data de Leitura: {new Date(userData.consumidor.ultimaLeitura).toLocaleDateString()}</p>
+    </div>
+  )}
+
+  {userData?.tipoConta === 'fornecedor' && userData?.fornecedor && (
+    <div className="fornecedor-info mb-6">
+      <h3 className="text-lg font-semibold text-foreground">Dados do Fornecedor</h3>
+      <p className="text-foregroundopacity80">Energia Primária: {userData.fornecedor.energiaPrimaria}</p>
+      <p className="text-foregroundopacity80">Capacidade do Fornecedor: {userData.fornecedor.capacidade}</p>
+      <p className="text-foregroundopacity80">Licenciatura: {userData.fornecedor.licenciatura}</p>
+      <p className="text-foregroundopacity80">Status: {userData.fornecedor.status}</p>
+      <p className="text-foregroundopacity80">Data de Registro: {new Date(userData.fornecedor.dataOperacao).toLocaleDateString()}</p>
+    </div>
+  )}
+</div>
   )
 }
 

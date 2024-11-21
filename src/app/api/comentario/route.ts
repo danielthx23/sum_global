@@ -26,6 +26,6 @@ export async function POST(request: Request): Promise<NextResponse> {
     const data = await response.json();
     return NextResponse.json(data, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao salvar comentário' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao salvar comentário: ' + error  }, { status: 500 });
   }
 }

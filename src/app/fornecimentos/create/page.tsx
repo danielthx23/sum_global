@@ -20,7 +20,6 @@ const FornecimentoPostForm = () => {
 
   useEffect(() => {
     const fetchFornecedorData = async () => {
-      if (usuario && usuario.idUsuario) { 
         try {
           const response = await fetch(`/api/usuario/${usuario.idUsuario}`);
           if (!response.ok) {
@@ -29,10 +28,9 @@ const FornecimentoPostForm = () => {
           const data = await response.json();
           setFornecedorData(data);
         } catch (error) {
-          toastAlerta('Erro ao carregar dados do usuario!', 'erro');
+          toastAlerta('Erro ao carregar dados do usuario! ' + error, 'erro');
         }
-      }
-    };
+      };
 
     fetchFornecedorData();
   }, [usuario]); 
@@ -65,7 +63,7 @@ const FornecimentoPostForm = () => {
       toastAlerta('Fornecimento salvado com sucesso!', 'sucesso');
       router.push('/'); 
     } catch (error) {
-      toastAlerta('Erro ao salvar fornecimento!', 'erro');
+      toastAlerta('Erro ao salvar fornecimento! ' + error, 'erro');
     }
   };
 

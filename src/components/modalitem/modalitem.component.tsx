@@ -1,12 +1,12 @@
 import React from 'react';
-import { Modal, Box, ModalProps, SlotProps } from '@mui/material';
+import { Modal, Box, ModalProps } from '@mui/material';
 
 interface ModalItemProps extends Omit<ModalProps, 'children'> {
     children?: React.ReactNode;
     closeButton?: React.ReactNode;
     onClose?: () => void;
-    boxClassName?: string;  // Custom class for Box
-    modalClassName?: string; // Custom class for Modal
+    boxClassName?: string; 
+    modalClassName?: string; 
 }
 
 const ModalItem: React.FC<ModalItemProps> = ({
@@ -14,8 +14,8 @@ const ModalItem: React.FC<ModalItemProps> = ({
     children,
     onClose,
     open,
-    boxClassName,   // Use this prop for Box class
-    modalClassName, // Use this prop for Modal class
+    boxClassName,  
+    modalClassName, 
     ...props
 }) => {
     return (
@@ -24,7 +24,7 @@ const ModalItem: React.FC<ModalItemProps> = ({
             onClose={onClose}
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
-            className={modalClassName}  // Add className to Modal
+            className={modalClassName} 
             {...props}
             sx={{
                 zIndex: 1,
@@ -33,7 +33,7 @@ const ModalItem: React.FC<ModalItemProps> = ({
                 backdrop: {
                     sx: {
                         backgroundColor: 'var(--backgroundopacity80)',
-                        backgro8ndOpacity: '20%', // Set your backdrop color here
+                        backgro8ndOpacity: '20%', 
                     },
                 },
             }}
@@ -48,7 +48,7 @@ const ModalItem: React.FC<ModalItemProps> = ({
                     display: 'flex',
                     flexDirection: 'column',
                 }}
-                className={boxClassName} // Add className to Box
+                className={boxClassName} 
             >
                 {children}
 

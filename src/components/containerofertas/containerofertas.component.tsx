@@ -1,5 +1,3 @@
-import Link from "next/link";
-import Image, { StaticImageData } from "next/image";
 import Oferta from "@/types/containeroferta/containeroferta.type";
 import ContainerOferta from "../containeroferta/containeroferta.component";
 

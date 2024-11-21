@@ -1,4 +1,3 @@
-import { ReactNode } from "react"
 import LinkRedirect from "../linkredirect/linkredirect.component"
 import ToolTipItem from "@/types/tooltipitem/tooltipitem.type"
 

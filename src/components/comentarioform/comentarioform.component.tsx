@@ -5,7 +5,7 @@ import Input from "@/components/input/input.component"
 import useAuth from "@/hooks/useauth/useauth.hook"
 import useForm, { FormState } from "@/hooks/useform/useform.hook"
 import { useRouter } from "next/navigation"
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Post from "@/types/post/post.type"
 import Comentario from "@/types/comentario/comentario.type"
 import Usuario from "@/types/usuario/usuario.type"
@@ -76,7 +76,7 @@ async function submitCallback(values: FormState) {
             throw new Error('Erro ao enviar comentário');
         }
 
-        const data = await response.json();
+        //const data = await response.json();
 
         toastAlerta('Comentário enviado com sucesso!', 'sucesso');
         router.push(`/posts/${postId}`);

@@ -27,7 +27,7 @@ const Contato = () => {
             subject: '',
             message: '',
         },
-        async (values: FormState) => {
+        async () => {
             toastAlerta(`Email enviado com sucesso!`, 'sucesso');
             router.push('/');
         },

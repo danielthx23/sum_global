@@ -28,7 +28,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ idCo
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao atualizar comentário' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao atualizar comentário: ' + error }, { status: 500 });
   }
 }
 
@@ -53,6 +53,6 @@ export async function DELETE(request: Request, { params }: { params: { commentId
 
     return NextResponse.json({ message: 'Comentário deletado com sucesso!' }, { status: 204 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao deletar comentário' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao deletar comentário: ' + error }, { status: 500 });
   }
 }

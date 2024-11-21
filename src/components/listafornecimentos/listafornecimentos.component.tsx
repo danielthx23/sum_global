@@ -53,7 +53,7 @@ const ListaFornecimentos = ({ title, link, label, reversed }: ListaFornecimentos
                 const data: Fornecimento[] = await response.json();
                 setFornecimentos(data);
             } catch (error) {
-                toastAlerta("Erro ao recuperar fornecimentos", 'erro')
+                toastAlerta("Erro ao recuperar fornecimentos: " + error, 'erro')
             } finally {
                 setLoading(false);
             }

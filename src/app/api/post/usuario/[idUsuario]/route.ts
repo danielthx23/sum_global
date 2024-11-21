@@ -15,6 +15,6 @@ export async function GET(request: Request, { params }: { params: Promise<{ idUs
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao recuperar post usuário' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao recuperar post usuário: ' + error }, { status: 500 });
   }
 }

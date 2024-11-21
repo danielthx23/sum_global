@@ -23,6 +23,6 @@ export async function POST(request: Request): Promise<NextResponse> {
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao logar' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao logar: ' + error  }, { status: 500 });
   }
 }

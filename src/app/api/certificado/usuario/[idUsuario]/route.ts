@@ -26,6 +26,6 @@ export async function GET(request: Request, { params }: { params: Promise<{ idUs
 
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao recuperar certificados' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao recuperar certificados: ' + error }, { status: 500 });
   }
 }

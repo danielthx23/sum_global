@@ -32,7 +32,7 @@ const maskCpfCnpj = (value: string) => {
 }
 
 const LoginForm = () => {
-  const { usuario, handleLogin } = useAuth()  
+  const { handleLogin } = useAuth()  
   const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
 

@@ -20,7 +20,7 @@ const DeleteForm = <T,>({ item, itemName, itemSpecifiedName, onDelete }: DeleteF
 
   return (
     <div className="w-[600px] shadow-md mx-auto my-16 px-12 py-16 flex flex-col gap-4">
-      <p className='text-lg'>Tem certeza de que deseja excluir o {itemName} '{itemSpecifiedName}'?</p>
+      <p className='text-lg'>Tem certeza de que deseja excluir o {itemName} &apos;{itemSpecifiedName}&apos;?</p>
       <p className='text-lg'>Digite "delete" para confirmar a exclusão:</p>
       <Input
         type="text"

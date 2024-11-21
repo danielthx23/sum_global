@@ -34,7 +34,7 @@ const PostsForm: React.FC<PostsFormProps> = ({ onSubmit, initialPost, isUpdate =
     initialPostForm,
     onSubmit, 
     async (error: Error) => alert(error.message),
-    (form) => {
+    () => {
       const errors: { [key: string]: string } = {};
       if (!titulo) errors.titulo = 'O título é obrigatório';
       if (!descricao) errors.descricao = 'A descrição é obrigatória';

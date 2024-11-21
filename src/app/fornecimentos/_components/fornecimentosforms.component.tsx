@@ -30,7 +30,7 @@ const FornecimentosForm: React.FC<FornecimentosFormProps> = ({ onSubmit, initial
   };
 
   const {
-    data: { fornecedor, fornecimentoImagem, tipoContrato, precoKwh, dataVencimento, tipoEnergia, processoObtencao },
+    data: { fornecimentoImagem, tipoContrato, precoKwh, dataVencimento, tipoEnergia, processoObtencao },
     loadingSubmit,
     handleChange,
     handleSubmit,
@@ -41,7 +41,7 @@ const FornecimentosForm: React.FC<FornecimentosFormProps> = ({ onSubmit, initial
     initialFornecimentoForm,
     onSubmit, 
     async (error: Error) => alert(error.message), 
-    (form) => {
+    () => {
       const errors: { [key: string]: string } = {};
       if (!fornecimentoImagem) errors.fornecimentoImagem = 'A imagem é obrigatória';
       if (!tipoContrato) errors.tipoContrato = 'O tipo de contratação é obrigatório';

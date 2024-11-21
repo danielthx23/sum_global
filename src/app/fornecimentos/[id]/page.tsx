@@ -26,7 +26,7 @@ const FornecimentoDetails = () => {
   } = useForm(
     formRef,
     { email: '', kWh: 0, message: '' }, 
-    async (values: FormState) => {
+    async () => {
       toastAlerta(`Email enviado com sucesso!`, 'sucesso');
     },
     async (error: Error) => alert(error.message),
@@ -80,6 +80,7 @@ const FornecimentoDetails = () => {
           required
           placeholder="seuemail@exemplo.com"
           className="border p-2 w-full"
+          customError={errors.email}
         />
         <Input
           label="Quantidade de kWh"
@@ -91,6 +92,7 @@ const FornecimentoDetails = () => {
           required
           placeholder="Quantidade de kWh"
           className="border p-2 w-full"
+          customError={errors.kWh}
         />
         <div className="text-lg">
           Custo Total: R$ {totalCost.toFixed(2)}
@@ -103,6 +105,7 @@ const FornecimentoDetails = () => {
           required
           placeholder="Digite sua mensagem aqui"
           className="border p-2 w-full"
+          customError={errors.message}
         />
         <Button
         type="submit"

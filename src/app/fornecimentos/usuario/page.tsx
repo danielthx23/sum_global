@@ -23,7 +23,7 @@ const MeusFornecimentos = () => {
                     const data = await response.json();
                     setFilteredFornecimentos(data);
                 } catch (error) {
-                    toastAlerta("Falha ao recuperar Fornecimentos por Usuário", 'erro')
+                    toastAlerta("Falha ao recuperar Fornecimentos por Usuário: " + error, 'erro')
                 } finally {
                     setLoading(false);
                 }

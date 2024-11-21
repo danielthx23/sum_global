@@ -13,12 +13,12 @@ const BottomNav = () => {
   
   const itemFornecedores = [
     usuario?.valorToken && <LinkRedirectIcon label="Meus fornecimentos" link={`/fornecimentos/usuario`} icon={<IoPerson />} />,
-    <LinkRedirectIcon label="Todos fornecimentos" link="/fornecimentos" icon={<FaChargingStation />} />
+    <LinkRedirectIcon key="itemFornecedoresPosts" label="Todos fornecimentos" link="/fornecimentos" icon={<FaChargingStation />} />
   ].filter(Boolean);
   
   const itemForum = [
     usuario?.valorToken && <LinkRedirectIcon label="Meus Posts" link={`/posts/usuario`} icon={<IoPerson />} />,
-    <LinkRedirectIcon label="Todos Posts" link="/posts" icon={<MdForum />} />
+    <LinkRedirectIcon key="itemForumTodosPosts" label="Todos Posts" link="/posts" icon={<MdForum />} />
   ].filter(Boolean);
   
   const itemCertificados = [

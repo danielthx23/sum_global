@@ -1,6 +1,5 @@
 'use client';
 
-import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useauth/useauth.hook';
 import { FormState } from '@/hooks/useform/useform.hook';
@@ -34,7 +33,7 @@ const CreatePostForm = () => {
       }
       router.push('/');
     } catch (error) {
-      toastAlerta('Erro ao salvar Post', "sucesso")
+      toastAlerta('Erro ao salvar Post: ' + error, "sucesso")
     }
   };
 

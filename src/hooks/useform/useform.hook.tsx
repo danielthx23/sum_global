@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, RefObject, useCallback, useEffect, useState } from 'react';
 
 export interface FormState {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   [key: string]: any;
 }
 

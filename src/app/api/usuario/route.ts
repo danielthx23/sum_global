@@ -22,6 +22,6 @@ export async function POST(request: Request): Promise<NextResponse> {
     const data = await response.json();
     return NextResponse.json(data, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao criar usuário' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao criar usuário: ' + error }, { status: 500 });
   }
 }

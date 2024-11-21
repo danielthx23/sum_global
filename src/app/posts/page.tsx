@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import ListaPosts from "@/components/listaposts/listaposts.component";
 import Post from "@/types/post/post.type";
-import Usuario from "@/types/usuario/usuario.type";
 import SearchBar from '@/components/searchbar/searchbar.component';
 import Loader from '@/components/loader/loader.component';
 import useAuth from '@/hooks/useauth/useauth.hook';
@@ -41,7 +40,7 @@ const Posts = () => {
         };
 
         fetchPosts();
-    }, []);
+    }, [perPage]);
 
     useEffect(() => {
         const filtered = posts.filter(post => 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { notFound, useParams } from 'next/navigation';
 import PostsForm from '../../_components/postsform/postsform.component';
 import Loader from '@/components/loader/loader.component';
@@ -28,7 +28,7 @@ const UpdatePostForm = () => {
                 const data = await response.json();
                 setPost(data);
             } catch (error) {
-                toastAlerta('Erro recuperando Post', 'erro');
+                toastAlerta('Erro recuperando Post: ' + error, 'erro');
             } finally {
                 setLoading(false);
             }

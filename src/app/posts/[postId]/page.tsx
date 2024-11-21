@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import Post from '@/types/post/post.type';
-import Usuario from '@/types/usuario/usuario.type';
 import Commentary from '@/components/cardcomentario/cardcomentario.component';
 import Image from "next/image";
 import { notFound, useParams } from 'next/navigation';

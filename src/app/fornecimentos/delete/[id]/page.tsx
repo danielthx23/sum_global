@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import useAuth from '@/hooks/useauth/useauth.hook';
 import DeleteForm from '@/components/deleteform/deleteform.component';
 import SemPermissao from '@/components/sempermissao/sempermissao.component';
+import { toastAlerta } from '@/utils/toastalert/toastalert.util';
 
 const DeleteFornecimentoForm = () => {
     const [fornecimento, setFornecimento] = useState<Fornecimento | null>(null);
@@ -24,7 +25,7 @@ const DeleteFornecimentoForm = () => {
                 setFornecimento(data);
             } catch (error) {
                 toastAlerta(
-                    error instanceof Error ? error.message : 'Erro ao buscar fornecimento',
+                    'Erro ao buscar fornecimento: ' + error,
                     'erro'
                 );
             }
@@ -54,7 +55,7 @@ const DeleteFornecimentoForm = () => {
             toastAlerta('Fornecimento excluído com sucesso!', 'sucesso');
         } catch (error) {
             toastAlerta(
-                error instanceof Error ? error.message : 'Erro ao excluir fornecimento',
+                'Erro ao excluir fornecimento: ' + error,
                 'erro'
             );
         }
@@ -71,7 +72,4 @@ const DeleteFornecimentoForm = () => {
 };
 
 export default DeleteFornecimentoForm;
-function toastAlerta(arg0: string, arg1: string) {
-    throw new Error('Function not implemented.');
-}
 

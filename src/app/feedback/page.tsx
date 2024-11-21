@@ -29,7 +29,7 @@ const Feedback: React.FC = () => {
             subject: '',
             feedback: '',
         },
-        async (values: FormState) => {
+        async () => {
             toastAlerta(`Email enviado com sucesso!`, 'sucesso');
             router.push('/');
         },

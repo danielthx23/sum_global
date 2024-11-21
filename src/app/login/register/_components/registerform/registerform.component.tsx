@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, EventHandler, FormEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import useForm, { FormState } from "@/hooks/useform/useform.hook"
 import Input from "@/components/input/input.component"
 import { useRouter } from 'next/navigation'
@@ -63,9 +63,8 @@ const RegisterForm = () => {
     handleSubmit,
     handleErrors,
     errors,
-    errorsCount
   } = useForm(formRef, initialState, submitCallback, submitErrorCallback,
-    (form) => {
+    () => {
       const errors: { [key: string]: string } = {}
 
       if (!data.nomeUsuario) {
@@ -260,7 +259,7 @@ const RegisterForm = () => {
         throw new Error(errorData.message || 'Erro ao realizar registro');
       }
 
-      const result = await response.json();
+      // const result = await response.json();
       toastAlerta("Usuário registrado com sucesso!", "sucesso")
       router.push('/login'); 
     } catch (error) {
@@ -271,27 +270,27 @@ const RegisterForm = () => {
     }
   }
 
-  const maskCpf = (value: string) => {
-    const cleaned = value.replace(/\D/g, '')
-    return cleaned.replace(/(\d{3})(\d{0,3})(\d{0,3})(\d{0,2})/, (_, p1, p2, p3, p4) => {
-      let formatted = p1
-      if (p2) formatted += '.' + p2
-      if (p3) formatted += '.' + p3
-      if (p4) formatted += '-' + p4
-      return formatted
-    })
-  }
+  // const maskCpf = (value: string) => {
+  //   const cleaned = value.replace(/\D/g, '')
+  //   return cleaned.replace(/(\d{3})(\d{0,3})(\d{0,3})(\d{0,2})/, (_, p1, p2, p3, p4) => {
+  //     let formatted = p1
+  //     if (p2) formatted += '.' + p2
+  //     if (p3) formatted += '.' + p3
+  //     if (p4) formatted += '-' + p4
+  //     return formatted
+  //   })
+  // }
 
   const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleChange(e)
   }
 
-  const maskCnpj = (value: string) => {
-    const cleaned = value.replace(/\D/g, '')
-    return cleaned.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})/, (_, p1, p2, p3, p4, p5) =>
-      [p1, p2, p3].join('.').concat(`/${p4}`).concat(p5 ? `-${p5}` : '')
-    )
-  }
+  // const maskCnpj = (value: string) => {
+  //   const cleaned = value.replace(/\D/g, '')
+  //   return cleaned.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})/, (_, p1, p2, p3, p4, p5) =>
+  //     [p1, p2, p3].join('.').concat(`/${p4}`).concat(p5 ? `-${p5}` : '')
+  //   )
+  // }
 
   const handleCnpjChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleChange(e)

@@ -1,5 +1,4 @@
 import ListItem from "@/types/listitem/listitem.type";
-import { ReactNode } from "react";
 
 interface MainCarouselSlideListProps {
     listItems: ListItem[]

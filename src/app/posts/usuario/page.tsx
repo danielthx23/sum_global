@@ -23,7 +23,7 @@ const MyPosts = () => {
                     const data = await response.json();
                     setUserPosts(data);
                 } catch (error) {
-                    toastAlerta("Falha ao recuperar Posts por Usuário", 'erro')
+                    toastAlerta("Falha ao recuperar Posts por Usuário: " + error, 'erro')
                 } finally {
                     setLoading(false);
                 }

@@ -12,7 +12,6 @@ import { FaCertificate, FaChargingStation } from 'react-icons/fa'
 import { IoPerson } from 'react-icons/io5'
 import { MdForum } from 'react-icons/md'
 import useAuth from '@/hooks/useauth/useauth.hook'
-import Image from "next/image";
 import Page from '@/types/page/page.type'
 import ProfileToolTipItem from '../profiletooltip/profiletooltip.component'
 

@@ -14,7 +14,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ idPo
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha recuperando post por id' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha recuperando post por id: ' + error }, { status: 500 });
   }
 }
 
@@ -39,7 +39,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ idPo
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao atualizar post' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao atualizar post: ' + error }, { status: 500 });
   }
 }
 
@@ -57,6 +57,6 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
 
     return NextResponse.json({ message: 'Post deletado com sucesso!' }, { status: 204 }); 
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao deletar post' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao deletar post: ' + error }, { status: 500 });
   }
 }

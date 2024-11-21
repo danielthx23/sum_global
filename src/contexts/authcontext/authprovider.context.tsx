@@ -6,6 +6,7 @@ import UsuarioLogin from "@/types/usuariologin/usuariologin.type";
 import { FormState } from "@/hooks/useform/useform.hook";
 import { toastAlerta } from "@/utils/toastalert/toastalert.util";
 
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 interface AuthProviderProps extends PropsWithChildren {}
 
 export function AuthProvider({ children }: AuthProviderProps) {
@@ -33,7 +34,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             localStorage.setItem('authToken', data.token || `${usuarioLogin.cnpj || usuarioLogin.cpf}.${usuarioLogin.numeroSenha}`);
             toastAlerta("Usuário logado com sucesso!", "sucesso");
         } catch (error) {
-            toastAlerta("Não foi possível realizar o login. Verifique suas credenciais.", 'info');; 
+            toastAlerta("Não foi possível realizar o login. Verifique suas credenciais: " + error, 'info');; 
         }
     }
 

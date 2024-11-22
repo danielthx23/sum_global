@@ -45,7 +45,7 @@ const StepForm = ({
     <form 
       onSubmit={(e) => handleSubmit(e)} 
       ref={formRef}
-      className="w-full h-fit flex flex-col items-center gap-4 p-4 px-1 md:px-1 sm:px-1 xs:px-0 lg:px-12 xl:px-12 2xl:px-12 relative"
+      className="w-full h-fit flex flex-col items-center gap-4 p-4 px-1 md:px-0 sm:px-0 xs:px-0 lg:px-12 xl:px-12 2xl:px-12 relative"
       noValidate
     >
       <ProgressCircles currentStep={currentStep} steps={steps} />

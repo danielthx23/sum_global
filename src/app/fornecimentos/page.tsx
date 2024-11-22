@@ -9,6 +9,7 @@ import SearchBar from '@/components/searchbar/searchbar.component';
 import Loader from '@/components/loader/loader.component';
 import { toastAlerta } from '@/utils/toastalert/toastalert.util';
 import Link from 'next/link';
+import useAuth from '@/hooks/useauth/useauth.hook';
 
 const Fornecimentos = () => {
     const [fornecimentos, setFornecimentos] = useState<Fornecimento[]>([]);
@@ -20,6 +21,7 @@ const Fornecimentos = () => {
     const [selectedRegiao, setSelectedRegiao] = useState<string>("");
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+    const { usuario } = useAuth();
 
     useEffect(() => {
         const fetchFornecimentos = async () => {
@@ -151,11 +153,11 @@ const Fornecimentos = () => {
                     formClassName="w-2/4"
                     loading={loading}
                 />
-                <div className="w-full flex justify-end my-8">
+                {usuario?.valorToken && usuario?.tipoConta === 'fornecedor' && <div className="w-full flex justify-end my-8">
                     <Link href="/fornecimentos/create" className="py-2 px-4 bg-backgroundlight text-foreground rounded-md hover:bg-foreground hover:text-backgroundlight transition-all ease-in-out">
                         Adicionar Novo Fornecimento
                     </Link>
-                </div>
+                </div>}
                 {loading ? (
                     <Loader
                         classNameWrapper={'h-screen w-full flex flex-col gap-4 items-center justify-center'}

@@ -133,3 +133,4 @@ Youtube
 - Melhorar o layout
 - Arrumar os erros do toastalerta, que não fazem sentido algumas vezes
 - Telas de sobre estão bagunçadas
+- Adicionar VIACEP no formulário

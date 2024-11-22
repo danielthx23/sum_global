@@ -12,7 +12,7 @@ import Loader from '@/components/loader/loader.component';
 const UpdateComentarioForm = () => {
   const { usuario } = useAuth();
   const params = useParams();
-  const id = params.id;
+  const id = params.idComentario;
 
   const [comentario, setComentario] = useState<Comentario | null>(null);
   const [loading, setLoading] = useState(true);

@@ -12,7 +12,7 @@ import Loader from '@/components/loader/loader.component';
 const DeleteComentarioForm = () => {
     const [comentario, setComentario] = useState<Comentario | null>(null);
     const params = useParams();
-    const id = params.id;
+    const id = params.idComentario;
     const { usuario } = useAuth();
     const [loading, setLoading] = useState(true);
     const router = useRouter();

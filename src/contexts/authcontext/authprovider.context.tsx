@@ -64,7 +64,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             handleLogout(); 
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [usuario]);
+    }, []);
 
     return (
         <AuthContext.Provider value={{ usuario, handleLogin, handleLogout }}>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { notFound, useParams, useRouter } from 'next/navigation';
+import { notFound, useParams} from 'next/navigation';
 import useAuth from '@/hooks/useauth/useauth.hook';
 import Comentario from '@/types/comentario/comentario.type';
 import ComentarioForm from '@/components/comentarioform/comentarioform.component';
@@ -16,7 +16,6 @@ const UpdateComentarioForm = () => {
 
   const [comentario, setComentario] = useState<Comentario | null>(null);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchComentario = async () => {

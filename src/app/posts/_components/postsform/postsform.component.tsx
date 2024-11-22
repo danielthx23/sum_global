@@ -46,11 +46,11 @@ const PostsForm: React.FC<PostsFormProps> = ({ onSubmit, initialPost, isUpdate =
   return (
     <form
       ref={formRef}
-      className="w-full w-max-[700px] mx-auto flex flex-col gap-4 my-8 rounded-md shadow-md p-4 md:p-8"
+      className="max-w-[700px] mx-auto flex flex-col gap-4 my-8 rounded-md shadow-md p-12"
       onSubmit={handleSubmit}
       noValidate
     >
-      <h1 className="text-lg md:text-2xl w-full text-center mb-8">{isUpdate ? 'Atualizar Post' : 'Criar novo Post'}</h1>
+        <h1 className='text-2xl w-full text-center mb-8'>{isUpdate ? 'Atualizar Post' : 'Criar novo Post'}</h1>
       <Input
         label="Título"
         name="titulo"
@@ -90,14 +90,7 @@ const PostsForm: React.FC<PostsFormProps> = ({ onSubmit, initialPost, isUpdate =
         textColor="foreground"
         className="mt-8 w-full flex justify-center items-center"
       >
-        {loadingSubmit ? (
-          <Loader
-            classNameWrapper="w-fit h-fit"
-            classNameLoader="w-fit h-fit border-foreground text-foreground"
-            haveLabel={false}
-            label=""
-          />
-        ) : isUpdate ? 'Atualizar Post' : 'Criar Post'}
+        {loadingSubmit ? <Loader classNameWrapper={'w-fit h-fit'} classNameLoader={'w-fit h-fit border-foreground text-foreground'} haveLabel={false} label={''}/> : isUpdate ? 'Atualizar Post' : 'Criar Post'}
       </Button>
     </form>
   );

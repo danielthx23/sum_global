@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Fornecimento from '@/types/fornecimento/fornecimento.type';
-import { useParams, useRouter } from 'next/navigation';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useauth/useauth.hook';
 import DeleteForm from '@/components/deleteform/deleteform.component';
 import SemPermissao from '@/components/sempermissao/sempermissao.component';
@@ -45,7 +45,7 @@ const DeleteFornecimentoForm = () => {
     }
 
     if (!fornecimento) {
-        return <div>Fornecimento não encontrado</div>;
+        return notFound();
     }
 
     if (!usuario || usuario.idUsuario !== fornecimento.fornecedor?.usuario?.idUsuario) {

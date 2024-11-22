@@ -2,13 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import Post from '@/types/post/post.type';
-import Commentary from '@/components/cardcomentario/cardcomentario.component';
 import Image from "next/image";
 import { notFound, useParams } from 'next/navigation';
 import useAuth from '@/hooks/useauth/useauth.hook';
 import ComentarioForm from '@/components/comentarioform/comentarioform.component';
 import Loader from '@/components/loader/loader.component';
 import { toastAlerta } from '@/utils/toastalert/toastalert.util';
+import CardComentario from '@/components/cardcomentario/cardcomentario.component';
 
 const PostDetails = () => {
     const [post, setPost] = useState<Post | null | undefined>(null);
@@ -104,7 +104,7 @@ const PostDetails = () => {
             <div className="mt-4">
                 {post.comentarios && post.comentarios.length > 0 ? (
                     post.comentarios.map(comentario => (
-                        <Commentary key={comentario.idComentario} comentario={comentario} />
+                        <CardComentario key={comentario.idComentario} comentario={comentario} />
                     ))
                 ) : (
                     <p>Não há comentários para este post.</p>

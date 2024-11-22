@@ -8,10 +8,13 @@ import Loader from '@/components/loader/loader.component'
 import { toastAlerta } from '@/utils/toastalert/toastalert.util'
 import Link from 'next/link'
 import SemPermissao from '@/components/sempermissao/sempermissao.component'
+import Comentario from '@/types/comentario/comentario.type'
+import CardComentario from '@/components/cardcomentario/cardcomentario.component'
 
 const PerfilPage = () => {
   const { usuario } = useAuth() 
   const [userData, setUserData] = useState<Usuario>()
+  const [comentarios, setComentarios] = useState<Comentario[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -31,8 +34,26 @@ const PerfilPage = () => {
         setLoading(false)
       }
     }
+
+    const fetchComentariosUsuario = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch(`/api/comentario/usuario/${usuario?.idUsuario}`)
+        if (!response.ok) {
+          throw new Error('Falha ao buscar comentarios do usuário.')
+        }
+        const data = await response.json()
+        setComentarios(data)
+        toastAlerta('Dados carregados com sucesso!', 'sucesso') 
+      } catch (error) {
+        toastAlerta('Falha ao carregar comentarios do usuário. Tente novamente: ' + error, 'erro')
+      } finally {
+        setLoading(false)
+      }
+    }
   
     fetchUserData()
+    fetchComentariosUsuario()
   }, [usuario])
   
   if (!usuario) {
@@ -133,6 +154,17 @@ const PerfilPage = () => {
   )}
 
   <Link href="/perfil/update" className='px-4 py-2 bg-foreground text-background rounded-md m-4 hover:bg-background hover:text-foreground transition-all ease-in-out text-center'>Atualizar Usuário</Link>
+
+  <h2 className="text-xl font-semibold mt-6">Comentários:</h2>
+            <div className="mt-4">
+                {comentarios && comentarios.length > 0 ? (
+                    comentarios.map(comentario => (
+                        <CardComentario key={comentario.idComentario} comentario={comentario} />
+                    ))
+                ) : (
+                    <p>Usuario não tem comentarios.</p>
+                )}
+            </div>
 </div>
   )
 }

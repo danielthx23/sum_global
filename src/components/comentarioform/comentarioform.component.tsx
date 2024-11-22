@@ -10,22 +10,25 @@ import Post from "@/types/post/post.type"
 import Comentario from "@/types/comentario/comentario.type"
 import Usuario from "@/types/usuario/usuario.type"
 import { toastAlerta } from "@/utils/toastalert/toastalert.util"
+import Loader from "../loader/loader.component"
 
 interface ComentarioFormProps {
   postId: number; 
+  initialComentario?: Comentario;
+  isUpdate?: boolean;
 }
 
-const ComentarioForm: React.FC<ComentarioFormProps> = ({ postId }) => {
+const ComentarioForm = ({ postId, initialComentario, isUpdate }: ComentarioFormProps) => {
   const { usuario } = useAuth()
   const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
 
   const initialComentarioForm: Comentario = {
-    idComentario: 0, 
+    idComentario: initialComentario?.idComentario || 0, 
     usuario: usuario as Usuario, 
-    titulo: '',
-    texto: '',
-    imagem: undefined,
+    titulo: initialComentario?.titulo || '',
+    texto: initialComentario?.texto || '',
+    imagem: initialComentario?.imagem || undefined,
     post: { idPost: postId } as Post 
   }
 
@@ -65,7 +68,7 @@ const ComentarioForm: React.FC<ComentarioFormProps> = ({ postId }) => {
 async function submitCallback(values: FormState) {
     try {
         const response = await fetch('/api/comentario', {
-            method: 'POST',
+            method: isUpdate ? 'PUT' : 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -73,12 +76,12 @@ async function submitCallback(values: FormState) {
         });
 
         if (!response.ok) {
-            throw new Error('Erro ao enviar comentário');
+            throw new Error(isUpdate ? 'Erro ao atualizar comentário' : 'Erro ao enviar comentário');
         }
 
         //const data = await response.json();
 
-        toastAlerta('Comentário enviado com sucesso!', 'sucesso');
+        toastAlerta(isUpdate ? 'Comentário atualizado com sucesso!' : 'Comentário enviado com sucesso!', 'sucesso');
         router.push("/posts");
     } catch (error) {
         if (error instanceof Error) {
@@ -141,7 +144,18 @@ async function submitCallback(values: FormState) {
         textColor="foreground"
         className="mt-8 w-full hover:bg-backgroundopacity80 hover:text-foreground border border-foregroundopacity20 hover:border-foregroundopacity20 transition-all ease-in-out"
       >
-        {loadingSubmit ? 'Carregando ...' : 'Enviar Comentário'}
+        {loadingSubmit ? (
+          <Loader
+            classNameWrapper="w-fit h-fit"
+            classNameLoader="w-fit h-fit border-foreground text-foreground"
+            haveLabel={false}
+            label=""
+          />
+        ) : isUpdate ? (
+          'Atualizar Comentário'
+        ) : (
+          'Criar Comentário'
+        )}
       </Button>
     </form>
   )

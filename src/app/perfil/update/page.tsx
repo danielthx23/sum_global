@@ -6,7 +6,6 @@ import SemPermissao from "@/components/sempermissao/sempermissao.component"
 import useAuth from "@/hooks/useauth/useauth.hook"
 import Usuario from "@/types/usuario/usuario.type"
 import { toastAlerta } from "@/utils/toastalert/toastalert.util"
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const UpdateUsuarioForm = () => {

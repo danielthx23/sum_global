@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import useAuth from '@/hooks/useauth/useauth.hook'
-import { useRouter } from 'next/navigation'
 import Usuario from '@/types/usuario/usuario.type'
 import Loader from '@/components/loader/loader.component'
 import { toastAlerta } from '@/utils/toastalert/toastalert.util'
@@ -11,7 +10,6 @@ import Link from 'next/link'
 import SemPermissao from '@/components/sempermissao/sempermissao.component'
 
 const PerfilPage = () => {
-  const router = useRouter()
   const { usuario } = useAuth() 
   const [userData, setUserData] = useState<Usuario>()
   const [loading, setLoading] = useState(true)

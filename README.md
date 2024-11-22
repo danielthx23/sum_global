@@ -139,3 +139,6 @@ https://youtu.be/MZl5ffMgnWs
 - Arrumar os erros do toastalerta, que não fazem sentido algumas vezes
 - Telas de sobre estão bagunçadas
 - Adicionar VIACEP no formulário
+- O Register Form na quarta etapa sempre ativa o handleSubmit
+- Fragmentar register form em componentes menores
+- posts/id as vezes retorna not found

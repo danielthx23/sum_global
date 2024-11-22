@@ -144,7 +144,7 @@ const Fornecimentos = () => {
                     Resetar Filtros
                 </button>
             </aside>
-            <section className="w-3/4 p-4 xs:w-full sm:w-full md:w-full lg:w-full">
+            <section className="w-full p-4 xs:w-full sm:w-full md:w-full lg:w-3/4 xl:w-3/4">
                 <SearchBar
                     onSearch={(query) => setSearchQuery(query)}
                     placeholder="Procurar pelo nome do fornecedor..."

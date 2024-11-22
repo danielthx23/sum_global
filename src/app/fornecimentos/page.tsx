@@ -144,7 +144,7 @@ const Fornecimentos = () => {
                     Resetar Filtros
                 </button>
             </aside>
-            <section className="w-3/4 p-4">
+            <section className="w-3/4 p-4 xs:w-full sm:w-full md:w-full lg:w-full">
                 <SearchBar
                     onSearch={(query) => setSearchQuery(query)}
                     placeholder="Procurar pelo nome do fornecedor..."
@@ -170,7 +170,7 @@ const Fornecimentos = () => {
                                 <p className="text-lg">Parece que ainda não há nenhum fornecimento.</p>
                             </div>
                         ) : (
-                            <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                                 {filteredArray.map((fornecimento) => (
                                     <CardFornecimento key={fornecimento.idFornecimento} fornecimento={fornecimento} />
                                 ))}

@@ -46,7 +46,7 @@ const PostsForm: React.FC<PostsFormProps> = ({ onSubmit, initialPost, isUpdate =
   return (
     <form
       ref={formRef}
-      className="w-full max-w-[700px] mx-auto flex flex-col gap-4 my-8 rounded-md shadow-md p-4 md:p-8"
+      className="w-full w-max-[700px] mx-auto flex flex-col gap-4 my-8 rounded-md shadow-md p-4 md:p-8"
       onSubmit={handleSubmit}
       noValidate
     >

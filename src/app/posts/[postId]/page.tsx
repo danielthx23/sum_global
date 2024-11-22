@@ -74,14 +74,14 @@ const PostDetails = () => {
     }
 
     return (
-        <main className="w-full p-10">
-            <section className='flex gap-8 items-center'>
+        <main className="w-full p-6 sm:p-10">
+            <section className='flex flex-col sm:flex-row gap-8 items-start sm:items-center'>
                 <Image
                     src={post.imagem || 'https://shopify.dev/assets/templated-apis-screenshots/pos-ui-extensions/2024-10/image-default.png'}
                     alt={`Post image`}
                     width={800}
                     height={400}
-                    className="my-4 w-1/4 h-[300px] rounded-md object-cover"
+                    className="my-4 w-full sm:w-1/4 h-auto sm:h-[300px] rounded-md object-cover"
                 />
                 <article className='flex flex-col gap-2 w-full'>
                     <h1 className="text-2xl font-bold">{post.titulo}</h1>
@@ -89,7 +89,7 @@ const PostDetails = () => {
                     <div className='flex gap-4 items-center mb-4'>
                         <Image
                             src={post.usuario.imagemFoto || 'https://shopify.dev/assets/templated-apis-screenshots/pos-ui-extensions/2024-10/image-default.png'}
-                            alt={`User  post profile picture`}
+                            alt={`User post profile picture`}
                             width={50}
                             height={50}
                             className="w-[50px] h-[50px] rounded-full object-cover"

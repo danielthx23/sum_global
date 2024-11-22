@@ -124,6 +124,8 @@ Caso você queira acessar os logs da aplicação Java Dockerizada acesse aqui, c
 
 Youtube
 
+https://youtu.be/MZl5ffMgnWs
+
 
 ## Considerações
 - O Render depois de um tempo hiberna, então caso alguma requisição não funcione tente fazer a requisição denovo

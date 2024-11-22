@@ -48,7 +48,7 @@ const MeusFornecimentos = () => {
                 <div className="w-full text-center py-8 h-screen flex flex-col gap-4 justify-center items-center">
                     <h2 className="text-xl font-semibold">Você ainda não possui Fornecimentos.</h2>
                     {usuario?.tipoConta === 'fornecedor' && (<><p className="text-gray-500 mt-4">Que tal criar o seu primeiro Fornecimento?</p>
-                    <Link href="/fornecimento/create" className='mt-4 px-8 py-2 bg-foreground text-background hover:bg-background hover:text-foreground transition-all ease-in-out rounded-md'>Criar Fornecimento</Link></>)}
+                    <Link href="/fornecimentos/create" className='mt-4 px-8 py-2 bg-foreground text-background hover:bg-background hover:text-foreground transition-all ease-in-out rounded-md'>Criar Fornecimento</Link></>)}
                 </div>
             ) : (
                 <>

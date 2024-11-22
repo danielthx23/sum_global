@@ -90,7 +90,21 @@ Instale o projeto com npm
   cd <path do projeto>
   npm install
 ```
-Antes de rodar o npm install crie um arquivo .env e adicione essa variavel de ambiente:
+Antes de rodar o npm install crie um arquivo .env e adicione a variavel de ambiente contido no .txt dentro do zip da entrega
+
+Depois disso rode npm run dev
+
+```bash
+  npm run dev
+```
+
+## Deploy na Vercel
+
+## Deploy no Render
+
+## Considerações
+- O Render depois de um tempo hiberna, então caso alguma requisição não funcione tente fazer a requisição denovo
+- 
 
 
     

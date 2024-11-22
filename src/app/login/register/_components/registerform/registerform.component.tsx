@@ -411,10 +411,10 @@ const validateStep4 = () => {
     return true; 
 };
 
-  const handleNextStep = async () => {
+  const handleNextStep = () => {
     let isValid = true;
 
-    await handleErrors();
+    handleErrors();
 
     if (currentStep === 1) {
       isValid = validateStep1();
@@ -571,6 +571,8 @@ const validateStep4 = () => {
           />
         </>
       ),
+      onNext: handleNextStep,
+      onPrev: handlePrevStep,
     },
     {
       title: 'Dados de Localidade',
@@ -662,6 +664,8 @@ const validateStep4 = () => {
           </div>
         </>
       ),
+      onNext: handleNextStep,
+      onPrev: handlePrevStep,
     },
     {
       title: 'Dados de Contato',
@@ -732,6 +736,8 @@ const validateStep4 = () => {
           </div>
         </>
       ),
+      onNext: handleNextStep,
+      onPrev: handlePrevStep,
     },
     {
       title: `Dados de ${data.tipoConta === 'fornecedor' ? 'Fornecedor' : 'Consumidor'}`,
@@ -892,7 +898,6 @@ const validateStep4 = () => {
         </>
       ),
       onSubmit: handleSubmit,
-      onNext
     },
   ]
 
@@ -903,7 +908,9 @@ const validateStep4 = () => {
         steps={steps}
         handleNextStep={handleNextStep}
         handlePrevStep={handlePrevStep}
-        formRef={formRef} errorsCount={errorsCount}      />
+        formRef={formRef}
+        errorsCount={errorsCount}
+      />
     </section>
   )
 }

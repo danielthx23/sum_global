@@ -41,16 +41,42 @@ O projeto deseja criar uma comunidade de fornecedores e consumidores de energia 
 ## Layout e Páginas Principais
 
 ![buscar_pagina](./public/sum_layout/buscar_pagina.png)
-![cadastro](./public/sum_layout/cadastro.png)
-![contato](./public/sum_layout/contato.png)
-![footer](./public/sum_layout/footer.png)
-![fornecimentos](./public/sum_layout/fornecimentos.png)
-![home_forth](./public/sum_layout/home_forth.png)
-![home_second](./public/sum_layout/home_second.png)
+
+Botão no canto direito superior que abre um modal de buscar páginas.
+
+Tela home contem um carousel, dois swipers e um container de oferta.
+
 ![home_start](./public/sum_layout/home_start.png)
 ![home_third](./public/sum_layout/home_third.png)
+![home_forth](./public/sum_layout/home_forth.png)
+
+Página de cadastros contem 4 steps
+
+![contato](./public/sum_layout/registrar.png)
+
+Tela de login recebe cpf ou cnpj e a senha.
+
 ![login](./public/sum_layout/login.png)
+
+Tela de contato, ela e o feedback são identicas
+
+![contato](./public/sum_layout/contato.png)
+
+Footer da página
+
+![footer](./public/sum_layout/footer.png)
+
+Tela de fornecimentos, cards e é possivel alterar e deletar. As telas de alterar e deletar são outras páginas mas são complementares.
+
+![fornecimentos](./public/sum_layout/fornecimentos.png)
+
+Tela de posts, cards e é possivel alterar e deletar. As telas de alterar e deletar são outras páginas mas são complementares.
+Também mostra os comentarios dentro de detalhes, nessa tela de detalhe tem o forms de comentarios e os comentários.
+
 ![posts](./public/sum_layout/posts.png)
+
+Páginas de Sobre
+
 ![sobre](./public/sum_layout/sobre.png)
 ![sobre_projeto](./public/sum_layout/sobre_projeto.png)
 

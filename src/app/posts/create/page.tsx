@@ -31,7 +31,7 @@ const CreatePostForm = () => {
         const errorData = await request.json();
         throw new Error(errorData.message || 'Ocorreu um erro desconhecido.');
       }
-      const response = await request.json();
+      //const response = await request.json();
       toastAlerta('Post salvado com sucesso!', "sucesso")
       router.push('/posts');
     } catch (error) {

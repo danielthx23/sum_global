@@ -61,7 +61,7 @@ const FornecimentoPostForm = () => {
         throw new Error(errorData.message || 'Ocorreu um erro desconhecido.');
       }
 
-      const response = await request.json();
+      //const response = await request.json();
       toastAlerta('Fornecimento salvado com sucesso!', 'sucesso');
       router.push('/fornecimentos'); 
     } catch (error) {

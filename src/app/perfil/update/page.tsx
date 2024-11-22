@@ -7,10 +7,9 @@ import useAuth from "@/hooks/useauth/useauth.hook"
 import Usuario from "@/types/usuario/usuario.type"
 import { toastAlerta } from "@/utils/toastalert/toastalert.util"
 import { useRouter } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 const UpdateUsuarioForm = () => {
-  const router = useRouter()
   const { usuario } = useAuth()
   const [userData, setUserData] = useState<Usuario>()
   const [loading, setLoading] = useState(true)

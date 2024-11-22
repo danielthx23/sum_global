@@ -10,25 +10,17 @@ import { toastAlerta } from '@/utils/toastalert/toastalert.util'
 import Link from 'next/link'
 import SemPermissao from '@/components/sempermissao/sempermissao.component'
 
-const ProfilePage = () => {
+const PerfilPage = () => {
   const router = useRouter()
   const { usuario } = useAuth() 
   const [userData, setUserData] = useState<Usuario>()
   const [loading, setLoading] = useState(true)
 
-  if (!usuario) {
-    return <SemPermissao/>;
-  }
-
   useEffect(() => {
     const fetchUserData = async () => {
-      if (!usuario) {
-        setLoading(false)
-        return
-      }
-  
       try {
-        const response = await fetch(`/api/usuario/${usuario.idUsuario}`)
+        setLoading(true)
+        const response = await fetch(`/api/usuario/${usuario?.idUsuario}`)
         if (!response.ok) {
           throw new Error('Falha ao buscar dados do usuário.')
         }
@@ -43,8 +35,11 @@ const ProfilePage = () => {
     }
   
     fetchUserData()
-  }, [usuario, router])
+  }, [usuario])
   
+  if (!usuario) {
+    return <SemPermissao/>;
+  }
 
   if (loading) {
     return <Loader classNameWrapper={'h-screen w-full flex flex-col gap-4 items-center justify-center'} classNameLoader={'w-14 h-14'} haveLabel={true} label={'Carregando seu perfil!'}/>
@@ -144,4 +139,4 @@ const ProfilePage = () => {
   )
 }
 
-export default ProfilePage
+export default PerfilPage

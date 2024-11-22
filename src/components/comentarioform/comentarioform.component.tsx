@@ -67,7 +67,7 @@ const ComentarioForm = ({ postId, initialComentario, isUpdate }: ComentarioFormP
 
 async function submitCallback(values: FormState) {
     try {
-        const response = await fetch('/api/comentario', {
+        const response = await fetch(isUpdate ? `/api/comentario/${initialComentario?.idComentario}` :'/api/comentario', {
             method: isUpdate ? 'PUT' : 'POST',
             headers: {
                 'Content-Type': 'application/json',

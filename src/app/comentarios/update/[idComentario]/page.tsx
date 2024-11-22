@@ -60,11 +60,13 @@ const UpdateComentarioForm = () => {
   }
 
   return (
-    <ComentarioForm
-      postId={comentario.post?.idPost || 0}
-      initialComentario={comentario}
-      isUpdate={true}
-    />
+    <main className='h-screen w-full flex justify-center items-center'>
+        <ComentarioForm
+          postId={comentario.post?.idPost || 0}
+          initialComentario={comentario}
+          isUpdate={true}
+        />
+    </main>
   );
 };
 

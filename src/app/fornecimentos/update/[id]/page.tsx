@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import useAuth from '@/hooks/useauth/useauth.hook';
 import Fornecimento from '@/types/fornecimento/fornecimento.type';
 import { FormState } from '@/hooks/useform/useform.hook';
 import FornecimentosForm from '../../_components/fornecimentosforms.component';
 import SemPermissao from '@/components/sempermissao/sempermissao.component';
 import { toastAlerta } from '@/utils/toastalert/toastalert.util';
+import Loader from '@/components/loader/loader.component';
 
 const UpdateFornecimentoForm = () => {
   const { usuario } = useAuth();
@@ -20,6 +21,7 @@ const UpdateFornecimentoForm = () => {
   useEffect(() => {
     const fetchFornecimento = async () => {
       try {
+        setLoading(true);
         const response = await fetch(`/api/fornecimento/${id}`);
         if (!response.ok) {
           throw new Error('Erro ao buscar fornecimento');
@@ -40,11 +42,11 @@ const UpdateFornecimentoForm = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Carregando...</div>;
-  }
+    return <Loader classNameWrapper={'h-screen w-full flex flex-col gap-4 items-center justify-center'} classNameLoader={'w-14 h-14'} haveLabel={true} label={'Carregando Fornecimento'} />;
+}
 
   if (!fornecimento) {
-    return <div>Fornecimento não encontrado</div>;
+    return notFound();
   }
 
   if (!usuario || usuario.idUsuario !== fornecimento.fornecedor?.usuario?.idUsuario) {
@@ -58,7 +60,7 @@ const UpdateFornecimentoForm = () => {
         ...values,
       };
 
-      const request = await fetch(`/api/fornecimentos/${fornecimento.idFornecimento}`, {
+      const request = await fetch(`/api/fornecimento/${fornecimento.idFornecimento}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedFornecimentoData),

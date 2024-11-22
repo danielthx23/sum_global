@@ -150,7 +150,7 @@ const Fornecimentos = () => {
                 <SearchBar
                     onSearch={(query) => setSearchQuery(query)}
                     placeholder="Procurar pelo nome do fornecedor..."
-                    formClassName="w-2/4"
+                    formClassName="w-2/4 py-8"
                     loading={loading}
                 />
                 {usuario?.valorToken && usuario?.tipoConta === 'fornecedor' && <div className="w-full flex justify-end my-8">

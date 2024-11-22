@@ -36,9 +36,9 @@ const CardFornecimento = ({ fornecimento }: CardFornecimentoProps) => {
                     <h1 className="w-full">
                         {fornecimento?.fornecedor?.usuario?.razaoSocial ? fornecimento.fornecedor.usuario.razaoSocial : 'Fornecedora sem nome'}
                     </h1>
-                    { usuario?.idUsuario && (
+                    { usuario?.idUsuario && usuario?.idUsuario === fornecimento.fornecedor?.usuario.idUsuario && (
                 <div className="w-fit flex justify-end">
-                <AlterDeleteTooltip postId={usuario?.idUsuario} path={"/fornecimentos"}/>
+                <AlterDeleteTooltip postId={fornecimento.idFornecimento} path={"/fornecimentos"}/>
             </div>
             )}
             </aside>

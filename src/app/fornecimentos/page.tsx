@@ -86,8 +86,8 @@ const Fornecimentos = () => {
 
 
     return (
-        <main className="w-full flex xs:flex-col sm:flex-col md:flex lg:flex xl:flex 2xl:flex justify-center items-center p-4">
-            <aside className="w-1/4 xs:w-full sm:w-full md:w-1/4 lg:w-1/4 xl:w-1/4 2xl:w-1/4 p-4 flex flex-col justify-center gap-4">
+        <main className="w-full flex flex-col lg:flex-row xl:flex-row 2xl:flex-row justify-center items-center p-4">
+            <aside className="w-full lg:w-1/4 xl:w-1/4 2xl:w-1/4 p-4 flex flex-col justify-center gap-4">
                 <h2 className="text-lg font-bold">Filtros</h2>
                 <Select
                     id="tipoContrato"

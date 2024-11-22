@@ -74,7 +74,7 @@ const useForm = (
     if (count) {
       setLoading(false);
       if (errorCallback instanceof Function) {
-        await errorCallback(new Error('Invalid Form', { cause: validationErrors }));
+        await errorCallback(new Error('Form inválido', { cause: validationErrors }));
       }
       return;
     }

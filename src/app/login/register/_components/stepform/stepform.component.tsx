@@ -16,6 +16,7 @@ interface StepFormProps {
   handleNextStep: () => void; 
   handlePrevStep: () => void; 
   formRef: RefObject<HTMLFormElement>;
+  errorsCount: number;
 }
 
 const StepForm = ({
@@ -24,12 +25,13 @@ const StepForm = ({
   handleNextStep,
   handlePrevStep,
   formRef,
+  errorsCount,
 }: StepFormProps) => {
   const { content, onSubmit, onNext, onPrev } = steps[currentStep - 1];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (onSubmit) {
+    if (onSubmit && errorsCount < 0) {
       await onSubmit(e);
     }
   };
@@ -55,7 +57,7 @@ const StepForm = ({
           <BiChevronLeft className='text-xl group-hover:mr-2 transition-all ease-in-out'/>Voltar
         </Button>
 
-        {onSubmit && currentStep === steps.length ? (
+        {onSubmit ? (
           <Button 
             type="submit"
             backgroundColor="backgroundlight"

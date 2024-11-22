@@ -21,11 +21,11 @@ const TopNav = () => {
   return (
     <nav className='w-full border-b border-foregroundopacity20 px-[5%] py-4'>
       <ul className='w-full flex justify-between items-center text-sm'>
-        <section className='flex items-center gap-14'>
+        <section className='flex items-center gap-14 h-11'>
           <li className='sm:block md:block lg:block xl:hidden 2xl:hidden'>
             <MenuButton />
           </li>
-          <li>
+          <li className='hidden sm:hidden md:hidden lg:block xl:block 2xl:block'>
             <Link href={'/'} className='flex gap-4 items-center separate'>
               <UnoptimizedImage src={logoWWT} alt="Logo da WWT" className='w-16 h-fit' />
               <span className='border border-opacity-15 border-foreground mx-2 rotate-[30deg] h-8 w-[2px]'></span>

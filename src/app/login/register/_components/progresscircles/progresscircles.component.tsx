@@ -4,10 +4,10 @@ interface ProgressCirclesProps {
     currentStep: number;
     steps: Array<{
         title: string;
-        content: React.ReactNode; // Customizable content for each step
-        onSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<void>; // Submission handler for the step
-        onNext?: () => void; // Optional function to handle "Next" step
-        onPrev?: () => void; // Optional function to handle "Previous" step
+        content: React.ReactNode; 
+        onSubmit?: (e: React.FormEvent<HTMLFormElement>) => Promise<void>; 
+        onNext?: () => void;
+        onPrev?: () => void; 
     }>;
 }
 

@@ -63,6 +63,7 @@ const RegisterForm = () => {
     handleSubmit,
     handleErrors,
     errors,
+    errorsCount
   } = useForm(formRef, initialState, submitCallback, submitErrorCallback,
     () => {
       const errors: { [key: string]: string } = {}
@@ -410,10 +411,10 @@ const validateStep4 = () => {
     return true; 
 };
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     let isValid = true;
 
-    handleErrors();
+    await handleErrors();
 
     if (currentStep === 1) {
       isValid = validateStep1();
@@ -570,8 +571,6 @@ const validateStep4 = () => {
           />
         </>
       ),
-      onNext: handleNextStep,
-      onPrev: handlePrevStep,
     },
     {
       title: 'Dados de Localidade',
@@ -663,8 +662,6 @@ const validateStep4 = () => {
           </div>
         </>
       ),
-      onNext: handleNextStep,
-      onPrev: handlePrevStep,
     },
     {
       title: 'Dados de Contato',
@@ -735,8 +732,6 @@ const validateStep4 = () => {
           </div>
         </>
       ),
-      onNext: handleNextStep,
-      onPrev: handlePrevStep,
     },
     {
       title: `Dados de ${data.tipoConta === 'fornecedor' ? 'Fornecedor' : 'Consumidor'}`,
@@ -897,6 +892,7 @@ const validateStep4 = () => {
         </>
       ),
       onSubmit: handleSubmit,
+      onNext
     },
   ]
 
@@ -907,8 +903,7 @@ const validateStep4 = () => {
         steps={steps}
         handleNextStep={handleNextStep}
         handlePrevStep={handlePrevStep}
-        formRef={formRef}
-      />
+        formRef={formRef} errorsCount={errorsCount}      />
     </section>
   )
 }

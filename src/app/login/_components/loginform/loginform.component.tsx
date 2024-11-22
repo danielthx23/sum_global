@@ -6,11 +6,8 @@ import useAuth from "@/hooks/useauth/useauth.hook"
 import useForm, { FormState } from "@/hooks/useform/useform.hook"
 import UsuarioLogin from "@/types/usuariologin/usuariologin.type"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from 'react'
-import { toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
-import Loader from "@/components/loader/loader.component" // Assume you have a Loader component
+import Loader from "@/components/loader/loader.component"
 import { toastAlerta } from "@/utils/toastalert/toastalert.util"
 
 const maskCpfCnpj = (value: string) => {
@@ -33,7 +30,6 @@ const maskCpfCnpj = (value: string) => {
 
 const LoginForm = () => {
   const { handleLogin } = useAuth()  
-  const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
 
   const initialLoginForm: UsuarioLogin = {
@@ -111,8 +107,6 @@ const LoginForm = () => {
     try {
       const usuarioLogin = values as UsuarioLogin;  
       await handleLogin(usuarioLogin);
-      toast.success("Login realizado com sucesso!");
-      router.push('/');
     } catch (error) {
       if (error instanceof Error) {
         return submitErrorCallback(error);
@@ -131,7 +125,7 @@ const LoginForm = () => {
   useEffect(() => {
     const cleanedValue = formattedValue.replace(/\D/g, '');
 
-    if (cleanedValue.length <= 11) {
+    if (cleanedValue.length <= 11 && cleanedValue.length > 0) {
       handleChange({
         target: { name: 'cpf', value: cleanedValue },
       } as React.ChangeEvent<HTMLInputElement>);
@@ -146,7 +140,8 @@ const LoginForm = () => {
         target: { name: 'cpf', value: '' },
       } as React.ChangeEvent<HTMLInputElement>);
     }
-  }, [formattedValue, handleChange]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formattedValue.length > 0]);
 
   return (
     <form
@@ -189,7 +184,7 @@ const LoginForm = () => {
         disabled={loadingSubmit || !!errorsCount || !formRef.current}
         backgroundColor="backgroundlight"
         textColor="foreground"
-        className="mt-8 w-full hover:bg-backgroundopacity80 hover:text-foreground border border-foregroundopacity20 hover:border-foregroundopacity20 transition-all ease-in-out"
+        className="flex justify-center items-center mt-8 w-full hover:bg-backgroundopacity80 hover:text-foreground border border-foregroundopacity20 hover:border-foregroundopacity20 transition-all ease-in-out"
       >
         {loadingSubmit ? <Loader classNameWrapper={"w-fit h-fit"} classNameLoader={"w-fit h-fit"} haveLabel={false} label={""} /> : 'Entrar'}
       </Button>

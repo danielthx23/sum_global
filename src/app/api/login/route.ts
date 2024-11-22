@@ -7,6 +7,9 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     const loginData: UsuarioLogin = await request.json();
 
+    if(AUTH_API_URL === undefined) {
+      return NextResponse.json({ error: 'Backend URL não conectado!'  }, { status: 500 });
+    }
     const response = await fetch(`${AUTH_API_URL}/login`, {
       method: 'POST',
       headers: {
@@ -17,7 +20,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     if (!response.ok) {
       const errorData = await response.json();
-      return NextResponse.json({ error: errorData.message || 'Falha ao Lgar' }, { status: response.status });
+      return NextResponse.json({ error: errorData.message || 'Falha ao Logar' }, { status: response.status });
     }
 
     const data = await response.json();

@@ -5,11 +5,13 @@ import AuthContext from "./authcontext.context";
 import UsuarioLogin from "@/types/usuariologin/usuariologin.type";
 import { FormState } from "@/hooks/useform/useform.hook";
 import { toastAlerta } from "@/utils/toastalert/toastalert.util";
+import { useRouter } from "next/navigation";
 
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 interface AuthProviderProps extends PropsWithChildren {}
 
 export function AuthProvider({ children }: AuthProviderProps) {
+    const router = useRouter()
     const [usuario, setUsuario] = useState<UsuarioLogin | null>(null);
 
     async function handleLogin(usuarioLogin: FormState) {
@@ -33,8 +35,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     
             localStorage.setItem('authToken', data.token || `${usuarioLogin.cnpj || usuarioLogin.cpf}.${usuarioLogin.numeroSenha}`);
             toastAlerta("Usuário logado com sucesso!", "sucesso");
+            router.push("/");
         } catch (error) {
-            toastAlerta("Não foi possível realizar o login. Verifique suas credenciais: " + error, 'info');; 
+            const errorMessage = error instanceof Error && error.message 
+        ? error.message 
+        : "Ocorreu um erro inesperado ao fazer login.";
+
+    toastAlerta("Falha ao fazer Login: " + errorMessage, 'info');
         }
     }
 

@@ -42,7 +42,7 @@ const Input = ({ handleChange, disabled, readOnly, className = '', label = '', c
           rounded-lg px-4 py-2 h-fit w-60 bg-backgroundlight placeholder-neutral-400 outline-none
           ${!hasControllState ? 'bg-backgroundlight' : ''}
           ${disabled ? 'bg-foregroundopacity20 cursor-not-allowed' : ''} 
-          ${readOnly ? 'bg-foregroundlight' : ''}
+          ${readOnly ? 'bg-foregroundopacity20' : ''}
           ${canShowError ? 'border-red-500 border-2 ring-red-500' : ''} 
           ${className}
         `}

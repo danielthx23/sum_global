@@ -6,7 +6,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ idUs
   const idUsuario = (await params).idUsuario;
 
   try {
-    const response = await fetch(`${USER_API_URL}comentario/usuario/${idUsuario}`);
+    const response = await fetch(`${USER_API_URL}/comentario/usuario/${idUsuario}`);
     if (!response.ok) {
       throw new Error(`Erro ao recuperar comentarios por idUsuario: ${response.statusText}`);
     }

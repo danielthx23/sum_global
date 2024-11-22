@@ -86,8 +86,8 @@ const Fornecimentos = () => {
     
 
     return (
-        <main className="w-full flex xs:flex-col sm:flex-col md:flex-col lg:flex xl:flex p-4">
-            <aside className="w-1/4 p-4 flex flex-col gap-4">
+        <main className="w-full flex-col xs:flex-col sm:flex-col md:flex lg:flex xl:flex justify-center items-center p-4">
+            <aside className="w-1/4  xs:w-full sm:w-full p-4 flex flex-col justify-center gap-4">
                 <h2 className="text-lg font-bold">Filtros</h2>
                 <Select
                     id="tipoContrato"
@@ -170,7 +170,7 @@ const Fornecimentos = () => {
                     <p className="text-lg">Parece que ainda não há nenhum fornecimento.</p>
                 </div>
             ) : (
-                    <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                         {filteredArray.map((fornecimento) => (
                             <CardFornecimento key={fornecimento.idFornecimento} fornecimento={fornecimento} />
                         ))}

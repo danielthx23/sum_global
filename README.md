@@ -81,7 +81,7 @@ Páginas de Sobre
 ![sobre_projeto](./public/sum_layout/sobre_projeto.png)
 
 
-## Instalação
+## Instalação Rodar Local
 
 Instale o projeto com npm
 

@@ -61,7 +61,7 @@ const DeleteFornecimentoForm = () => {
             if (response.status !== 500) {
                 throw new Error('Falha ao deletar fornecimento');
             } else {
-                toastAlerta("Fornecimento deletado com sucesso!", 'erro')
+                toastAlerta("Fornecimento deletado com sucesso!", 'sucesso')
                 router.push('/fornecimentos')
             }
 

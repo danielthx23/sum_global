@@ -33,7 +33,11 @@ preservação ambiental.
 Uma plataforma de venda e compra de energia que deseja engajar o usuário com sua comunidade.
 
 O projeto deseja criar uma comunidade de fornecedores e consumidores de energia limpa, não apenas habilitando a venda e compra de energia limpa, mas também promovendo a colaboração entre pessoas para se converterem à energia limpa, com fóruns de ajuda e posts.
+
+
 ![Logo](./public/logos/sum_logo.svg)
+
+
 
 ## Color Reference
 

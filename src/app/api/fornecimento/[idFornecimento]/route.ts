@@ -3,6 +3,32 @@ import { NextResponse } from 'next/server';
 
 const POST_API_URL = process.env.JAVA_API_URL;
 
+export async function GET(request: Request, { params }: { params: Promise<{ idFornecimento: string }> }): Promise<NextResponse> {
+  const idFornecimento = (await params).idFornecimento;
+
+  if (!idFornecimento) {
+    return NextResponse.json({ error: 'idFornecimento é necessário!' }, { status: 400 });
+  }
+
+  try {
+    const response = await fetch(`${POST_API_URL}/fornecimento/${idFornecimento}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro ao buscar fornecimento: ${response.statusText}`);
+    }
+
+    const data: Fornecimento = await response.json();
+    return NextResponse.json(data, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Falha ao buscar fornecimento: ' + error }, { status: 500 });
+  }
+}
+
 export async function PUT(request: Request, { params }: { params: Promise<{ idFornecimento: string }> }): Promise<NextResponse> {
   const idFornecimento = (await params).idFornecimento;
 

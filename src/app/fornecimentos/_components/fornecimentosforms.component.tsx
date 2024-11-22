@@ -57,7 +57,7 @@ const FornecimentosForm = ({ onSubmit, initialFornecimento, isUpdate = false, ti
   return (
     <form
       ref={formRef}
-      className="w-max-[700px] mx-auto flex flex-col gap-4 my-8 rounded-md shadow-md p-12"
+      className="max-w-[700px] mx-auto flex flex-col gap-4 my-8 rounded-md shadow-md p-12"
       onSubmit={handleSubmit}
       noValidate
     >

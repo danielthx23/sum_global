@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { notFound, useParams } from 'next/navigation';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useauth/useauth.hook';
 import Fornecimento from '@/types/fornecimento/fornecimento.type';
 import { FormState } from '@/hooks/useform/useform.hook';
@@ -17,6 +17,7 @@ const UpdateFornecimentoForm = () => {
 
   const [fornecimento, setFornecimento] = useState<Fornecimento | null>(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchFornecimento = async () => {
@@ -56,7 +57,7 @@ const UpdateFornecimentoForm = () => {
   const submitCallback = async (values: FormState) => {
     try {
 
-      const request = await fetch(`/api/fornecimento/${fornecimento.idFornecimento}`, {
+      const response = await fetch(`/api/fornecimento/${fornecimento.idFornecimento}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -64,12 +65,13 @@ const UpdateFornecimentoForm = () => {
         }),
       });
 
-      if (!request.ok) {
-        const errorResponse = await request.json();
-        throw new Error(errorResponse.message || 'Erro ao atualizar o fornecimento');
-      }
-
-      toastAlerta('Fornecimento atualizado com sucesso!', 'sucesso');
+      const result = await response.json();
+            if (response.ok) {
+                toastAlerta('Fornecimento atualizado com sucesso!', 'sucesso');
+                router.push('/fornecimentos')
+            } else {
+                throw new Error(result.message || 'Falha ao atualizar Fornecimento');
+            }
     } catch (error) {
       toastAlerta(
         error instanceof Error ? error.message : 'Erro ao atualizar o fornecimento',

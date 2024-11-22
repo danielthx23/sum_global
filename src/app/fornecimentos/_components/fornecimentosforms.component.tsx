@@ -98,7 +98,7 @@ const FornecimentosForm = ({ onSubmit, initialFornecimento, isUpdate = false, ti
         readOnly={loadingSubmit}
         placeholder="Preço por kWh"
         className="w-full"
-        step={0.01}
+        step={0.11}
       />
       
       <Input

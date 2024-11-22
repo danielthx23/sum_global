@@ -99,6 +99,7 @@ const useForm = (
       }
 
       current[keys[keys.length - 1]] = value;
+      console.log(newData)
       return newData;
     });
 

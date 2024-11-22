@@ -38,7 +38,21 @@ O projeto deseja criar uma comunidade de fornecedores e consumidores de energia 
 ![Logo](./public/logos/sum_logo.svg)
 
 
-##Layouts e Telas
+## Layout e Páginas Principais
+
+![buscar_pagina](./public/sum_layout/buscar_pagina.png)
+![cadastro](./public/sum_layout/cadastro.png)
+![contato](./public/sum_layout/contato.png)
+![footer](./public/sum_layout/footer.png)
+![fornecimentos](./public/sum_layout/fornecimentos.png)
+![home_forth](./public/sum_layout/home_forth.png)
+![home_second](./public/sum_layout/home_second.png)
+![home_start](./public/sum_layout/home_start.png)
+![home_third](./public/sum_layout/home_third.png)
+![login](./public/sum_layout/login.png)
+![posts](./public/sum_layout/posts.png)
+![sobre](./public/sum_layout/sobre.png)
+![sobre_projeto](./public/sum_layout/sobre_projeto.png)
 
 
 

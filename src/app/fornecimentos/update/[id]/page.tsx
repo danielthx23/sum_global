@@ -55,15 +55,13 @@ const UpdateFornecimentoForm = () => {
 
   const submitCallback = async (values: FormState) => {
     try {
-      const updatedFornecimentoData: Fornecimento = {
-        ...fornecimento,
-        ...values,
-      };
 
       const request = await fetch(`/api/fornecimento/${fornecimento.idFornecimento}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedFornecimentoData),
+        body: JSON.stringify({
+          ...values
+        }),
       });
 
       if (!request.ok) {

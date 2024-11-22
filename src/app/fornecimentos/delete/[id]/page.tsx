@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Fornecimento from '@/types/fornecimento/fornecimento.type';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useauth/useauth.hook';
 import DeleteForm from '@/components/deleteform/deleteform.component';
 import SemPermissao from '@/components/sempermissao/sempermissao.component';
@@ -15,6 +15,7 @@ const DeleteFornecimentoForm = () => {
     const id = params.id;
     const { usuario } = useAuth();
     const [loading, setLoading] = useState(true);
+    const router = useRouter()
 
     useEffect(() => {
         const fetchFornecimento = async () => {
@@ -57,16 +58,15 @@ const DeleteFornecimentoForm = () => {
                 method: 'DELETE',
             });
 
-            if (!response.ok) {
-                throw new Error('Falha ao excluir o fornecimento');
+            if (response.status !== 500) {
+                throw new Error('Falha ao deletar fornecimento');
+            } else {
+                toastAlerta("Fornecimento deletado com sucesso!", 'erro')
+                router.push('/fornecimentos')
             }
 
-            toastAlerta('Fornecimento excluído com sucesso!', 'sucesso');
         } catch (error) {
-            toastAlerta(
-                'Erro ao excluir fornecimento: ' + error,
-                'erro'
-            );
+            toastAlerta('Erro deletando fornecimento' + error, 'erro');
         }
     };
 

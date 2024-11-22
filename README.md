@@ -100,13 +100,30 @@ Depois disso rode npm run dev
 
 ## Deploy na Vercel
 
+https://sum-global.vercel.app/
+
+Link do Deploy
+
 ## Deploy no Render
+
+Utilize as credenciais contidas no .txt para entrar no Render
+
+Acesse os Dashboards e acesse o Deploy
+
+Se você quiser acessar as variaveis de ambiente acesse essa aba
+
+Caso você queira acessar os logs da aplicação Java Dockerizada acesse aqui, caso o deploy devolva 500 você pode ler qual erro deu por aqui.
+
+## Link do Video da Explicação
+
+Youtube
+
 
 ## Considerações
 - O Render depois de um tempo hiberna, então caso alguma requisição não funcione tente fazer a requisição denovo
-- 
+- O contato e feedback não envia um e-mail
 
-
-    
-## Deployement Front
-## Deployement Back
+## Melhorias
+- Melhorar o layout
+- Arrumar os erros do toastalerta, que não fazem sentido algumas vezes
+- Telas de sobre estão bagunçadas

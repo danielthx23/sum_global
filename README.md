@@ -52,7 +52,7 @@ Tela home contem um carousel, dois swipers e um container de oferta.
 
 Página de cadastros contem 4 steps
 
-![contato](./public/sum_layout/registrar.png)
+![contato](./public/sum_layout/cadastro.png)
 
 Tela de login recebe cpf ou cnpj e a senha.
 
@@ -110,9 +110,15 @@ Utilize as credenciais contidas no .txt para entrar no Render
 
 Acesse os Dashboards e acesse o Deploy
 
+![sobre_projeto](./public/sum_layout/render-1.png)
+
 Se você quiser acessar as variaveis de ambiente acesse essa aba
 
+![sobre_projeto](./public/sum_layout/render-2.png)
+
 Caso você queira acessar os logs da aplicação Java Dockerizada acesse aqui, caso o deploy devolva status code 500 você pode ler qual erro deu por aqui.
+
+![sobre_projeto](./public/sum_layoutrender-3.png)
 
 ## Link do Video da Explicação
 

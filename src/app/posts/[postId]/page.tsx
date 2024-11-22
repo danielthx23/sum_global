@@ -36,6 +36,7 @@ const PostDetails = () => {
 
         const fetchComentariosPost = async () => {
             try {
+                setLoading(true);
                 const response = await fetch(`/api/comentario/post/${id}`);
                 if (!response.ok) {
                     throw new Error('Falha ao recuperar comentarios do post');

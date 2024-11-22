@@ -20,6 +20,7 @@ const PostDetails = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
+                setLoading(true);
                 const response = await fetch(`/api/post/${id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch post');

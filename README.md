@@ -81,16 +81,18 @@ Páginas de Sobre
 ![sobre_projeto](./public/sum_layout/sobre_projeto.png)
 
 
+## Instalação
 
-
-## Installation
-
-Install my-project with npm
+Instale o projeto com npm
 
 ```bash
-  npm install my-project
-  cd my-project
+  git clone <link do git do projeto>
+  cd <path do projeto>
+  npm install
 ```
+Antes de rodar o npm install crie um arquivo .env e adicione essa variavel de ambiente:
+
+
     
 ## Deployement Front
 ## Deployement Back

@@ -17,12 +17,15 @@ atuais, mas também promovam justiça social,
 crescimento econômico sustentável e
 preservação ambiental.
 
+## Repositorio
+
+https://github.com/danielthx23/sum_global
 
 ## Autores
 
-- [Daniel Saburo Akiyama](https://www.github.com/danielthx23) RM 558263
-- [João Pedro] RM
-- [Danilo Correia] RM
+- Daniel Saburo Akiyama RM 558263
+- João Pedro RM 558199
+- Danilo Correia RM 557540
 
 
 ## Solução Proposta

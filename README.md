@@ -112,7 +112,7 @@ Acesse os Dashboards e acesse o Deploy
 
 Se você quiser acessar as variaveis de ambiente acesse essa aba
 
-Caso você queira acessar os logs da aplicação Java Dockerizada acesse aqui, caso o deploy devolva 500 você pode ler qual erro deu por aqui.
+Caso você queira acessar os logs da aplicação Java Dockerizada acesse aqui, caso o deploy devolva status code 500 você pode ler qual erro deu por aqui.
 
 ## Link do Video da Explicação
 

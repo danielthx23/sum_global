@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Projeto Global Solution 2 Semestre - Front end Design Engineer
 
-First, run the development server:
+O Global Solution – 2º Semestre de 2024 convida os
+estudantes a se tornarem protagonistas dessa
+transformação. Em parceria com líderes do setor, o
+desafio deste semestre tem como tema central a Energia
+para um Futuro Sustentável.
+
+O objetivo é engajar mentes criativas e inovadoras na construção de soluções que possam
+impactar positivamente o futuro da energia no Brasil e no mundo.
+
+O evento desafia os participantes a pensarem em
+soluções tecnológicas e modelos de negócios que
+não apenas enfrentem os problemas energéticos
+atuais, mas também promovam justiça social,
+crescimento econômico sustentável e
+preservação ambiental.
+
+
+## Autores
+
+- [Daniel Saburo Akiyama](https://www.github.com/danielthx23) RM 558263
+- [João Pedro] RM
+- [Danilo Correia] RM
+
+
+## Solução Proposta
+
+### SUM +
+
+
+Uma plataforma de venda e compra de energia que deseja engajar o usuário com sua comunidade.
+
+O projeto deseja criar uma comunidade de fornecedores e consumidores de energia limpa, não apenas habilitando a venda e compra de energia limpa, mas também promovendo a colaboração entre pessoas para se converterem à energia limpa, com fóruns de ajuda e posts.
+![Logo](./public/logos/sum_logo.svg)
+
+## Color Reference
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f |
+| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
+| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
+| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
+
+
+## Installation
+
+Install my-project with npm
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  npm install my-project
+  cd my-project
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    
+## Deployement Front
+## Deployement Back

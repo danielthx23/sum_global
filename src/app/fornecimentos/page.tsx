@@ -86,7 +86,7 @@ const Fornecimentos = () => {
 
 
     return (
-        <main className="w-full flex-col xs:flex-col sm:flex-col md:flex lg:flex xl:flex 2xl:flex justify-center items-center p-4">
+        <main className="w-full flex xs:flex-col sm:flex-col md:flex lg:flex xl:flex 2xl:flex justify-center items-center p-4">
             <aside className="w-1/4 xs:w-full sm:w-full p-4 flex flex-col justify-center gap-4">
                 <h2 className="text-lg font-bold">Filtros</h2>
                 <Select

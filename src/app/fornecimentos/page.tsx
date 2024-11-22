@@ -63,8 +63,8 @@ const Fornecimentos = () => {
 
                 const matchesSearchQuery = searchQuery
                     ? fornecimento?.fornecedor?.usuario?.nomeUsuario
-                          .toLowerCase()
-                          .includes(searchQuery.toLowerCase())
+                        .toLowerCase()
+                        .includes(searchQuery.toLowerCase())
                     : true;
 
                 return matchesTipoDeContratacao && matchesPreco && matchesTipoDeEnergia && matchesRegiao && matchesSearchQuery;
@@ -83,11 +83,11 @@ const Fornecimentos = () => {
         setSelectedRegiao("");
         setSearchQuery("");
     };
-    
+
 
     return (
-        <main className="w-full flex-col xs:flex-col sm:flex-col md:flex lg:flex xl:flex justify-center items-center p-4">
-            <aside className="w-1/4  xs:w-full sm:w-full p-4 flex flex-col justify-center gap-4">
+        <main className="w-full flex-col xs:flex-col sm:flex-col md:flex lg:flex xl:flex 2xl:flex justify-center items-center p-4">
+            <aside className="w-1/4 xs:w-full sm:w-full p-4 flex flex-col justify-center gap-4">
                 <h2 className="text-lg font-bold">Filtros</h2>
                 <Select
                     id="tipoContrato"
@@ -145,40 +145,40 @@ const Fornecimentos = () => {
                 </button>
             </aside>
             <section className="w-3/4 p-4">
-    <SearchBar
-        onSearch={(query) => setSearchQuery(query)}
-        placeholder="Procurar pelo nome do fornecedor..."
-        formClassName="w-2/4"
-        loading={loading}
-    />
-    <div className="w-full flex justify-end my-8">
-                        <Link href="/fornecimentos/create" className="py-2 px-4 bg-backgroundlight text-foreground rounded-md hover:bg-foreground hover:text-backgroundlight transition-all ease-in-out">
-                            Adicionar Novo Fornecimento
-                        </Link>
-                    </div>
-    {loading ? (
-        <Loader
-            classNameWrapper={'h-screen w-full flex flex-col gap-4 items-center justify-center'}
-            classNameLoader={"w-14 h-14"}
-            haveLabel={true}
-            label={"Recuperando todos fornecimentos"}
-        />
-    ) : (
-        <>
-            {filteredArray.length === 0 ? (
-                <div className="text-center mt-4 h-[600px] flex justify-center items-center">
-                    <p className="text-lg">Parece que ainda não há nenhum fornecimento.</p>
+                <SearchBar
+                    onSearch={(query) => setSearchQuery(query)}
+                    placeholder="Procurar pelo nome do fornecedor..."
+                    formClassName="w-2/4"
+                    loading={loading}
+                />
+                <div className="w-full flex justify-end my-8">
+                    <Link href="/fornecimentos/create" className="py-2 px-4 bg-backgroundlight text-foreground rounded-md hover:bg-foreground hover:text-backgroundlight transition-all ease-in-out">
+                        Adicionar Novo Fornecimento
+                    </Link>
                 </div>
-            ) : (
-                    <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                        {filteredArray.map((fornecimento) => (
-                            <CardFornecimento key={fornecimento.idFornecimento} fornecimento={fornecimento} />
-                        ))}
-                    </div>
-            )}
-        </>
-    )}
-</section>
+                {loading ? (
+                    <Loader
+                        classNameWrapper={'h-screen w-full flex flex-col gap-4 items-center justify-center'}
+                        classNameLoader={"w-14 h-14"}
+                        haveLabel={true}
+                        label={"Recuperando todos fornecimentos"}
+                    />
+                ) : (
+                    <>
+                        {filteredArray.length === 0 ? (
+                            <div className="text-center mt-4 h-[600px] flex justify-center items-center">
+                                <p className="text-lg">Parece que ainda não há nenhum fornecimento.</p>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                                {filteredArray.map((fornecimento) => (
+                                    <CardFornecimento key={fornecimento.idFornecimento} fornecimento={fornecimento} />
+                                ))}
+                            </div>
+                        )}
+                    </>
+                )}
+            </section>
         </main>
     );
 };

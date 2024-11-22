@@ -16,42 +16,47 @@ import { BiMinusCircle } from 'react-icons/bi'
 import Endereco from '@/types/endereco/endereco.type'
 import { toastAlerta } from '@/utils/toastalert/toastalert.util'
 
-const RegisterForm = () => {
+interface RegisterFormProps {
+  initialUsuario?: Usuario;
+  isUpdate?: boolean;
+}
+
+const RegisterForm = ({ initialUsuario, isUpdate }: RegisterFormProps) => {
   const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
 
   const initialState: Usuario = {
-    idUsuario: 0,
-    nomeUsuario: '',
-    razaoSocial: '',
-    cnpj: '',
-    cpf: '',
-    tipoConta: 'fornecedor',
-    numeroSenha: '',
-    imagemFoto: '',
-    valorToken: '',
-    dataCadastro: new Date(),
-    telefones: [],
-    enderecos: [],
-    emails: [],
+    idUsuario: initialUsuario?.idUsuario || 0,
+    nomeUsuario: initialUsuario?.nomeUsuario || '',
+    razaoSocial: initialUsuario?.razaoSocial || '',
+    cnpj: initialUsuario?.cnpj || '',
+    cpf: initialUsuario?.cpf || '',
+    tipoConta: initialUsuario?.tipoConta || 'fornecedor',
+    numeroSenha: initialUsuario?.numeroSenha || '',
+    imagemFoto: initialUsuario?.imagemFoto || '',
+    valorToken: initialUsuario?.valorToken || '',
+    dataCadastro: initialUsuario?.dataCadastro || new Date(),
+    telefones: initialUsuario?.telefones || [],
+    enderecos: initialUsuario?.enderecos || [],
+    emails: initialUsuario?.emails || [],
     consumidor: {
-      idConsumidor: 0,
-      classeConsumo: '',
-      tipoConsumo: '',
-      consumoEnergetico: 0,
-      numeroMedidor: '',
-      tarifa: 0,
-      consumoMes: 0,
-      ultimaLeitura: new Date(),
+      idConsumidor: initialUsuario?.consumidor?.idConsumidor || 0,
+      classeConsumo: initialUsuario?.consumidor?.classeConsumo || '',
+      tipoConsumo: initialUsuario?.consumidor?.tipoConsumo || '',
+      consumoEnergetico: initialUsuario?.consumidor?.consumoEnergetico || 0,
+      numeroMedidor: initialUsuario?.consumidor?.numeroMedidor || '',
+      tarifa: initialUsuario?.consumidor?.tarifa || 0,
+      consumoMes: initialUsuario?.consumidor?.consumoMes || 0,
+      ultimaLeitura: initialUsuario?.consumidor?.ultimaLeitura || new Date(),
     } as Consumidor,
     fornecedor: {
-      idFornecedor: 0,
-      energiaPrimaria: '',
-      dataOperacao: new Date(),
-      status: '',
-      capacidade: 0,
-      licenciatura: '',
-      regiao: '',
+      idFornecedor: initialUsuario?.fornecedor?.idFornecedor || 0,
+      energiaPrimaria: initialUsuario?.fornecedor?.energiaPrimaria || '',
+      dataOperacao: initialUsuario?.fornecedor?.dataOperacao || new Date(),
+      status: initialUsuario?.fornecedor?.status || '',
+      capacidade: initialUsuario?.fornecedor?.capacidade || 0,
+      licenciatura: initialUsuario?.fornecedor?.licenciatura || '',
+      regiao: initialUsuario?.fornecedor?.regiao || '',
     } as Fornecedor,
   }
 
@@ -65,7 +70,7 @@ const RegisterForm = () => {
     errors,
     errorsCount
   } = useForm(formRef, initialState, submitCallback, submitErrorCallback,
-    () => {
+    (form) => {
       const errors: { [key: string]: string } = {}
 
       if (!data.nomeUsuario) {
@@ -76,17 +81,23 @@ const RegisterForm = () => {
         errors.imagemFoto = "URL da foto de perfil é inválida.";
       }
 
-      if (!data.cpf) {
+      if(currentStep === 1) {
+      const cpfInput = form.elements.namedItem('cpf') as HTMLInputElement
+      const cleanedCpfInput = cpfInput.value.replace(/\D/g, '');
+      if (!cleanedCpfInput) {
         errors.cpf = "CPF é obrigatório.";
-      } else if (!isValidCpf(data.cpf)) {
+      } else if (cleanedCpfInput.length !== 11 || /^(\d)\1{11}$/.test(cleanedCpfInput)) {
         errors.cpf = "CPF inválido.";
       }
 
-      if (!data.cnpj) {
+      const cnpjInput = form.elements.namedItem('cnpj') as HTMLInputElement
+      const cleanedCnpjInput = cnpjInput.value.replace(/\D/g, '');
+      if (!cleanedCnpjInput) {
         errors.cnpj = "CNPJ é obrigatório.";
-      } else if (!isValidCnpj(data.cnpj)) {
-        errors.cnpj = "CNPJ inválido.";
+      } else if (cleanedCnpjInput.length !== 14 || /^(\d)\1{14}$/.test(cleanedCnpjInput)) {
+        errors.cnpj ="CNPJ inválido.";
       }
+    }
 
       if (data.cnpj && !data.razaoSocial) {
         errors.razaoSocial = "Nome CNPJ / Razão Social é obrigatório.";
@@ -193,7 +204,7 @@ const RegisterForm = () => {
     })
 
   const [currentStep, setCurrentStep] = useState(1)
-  const [confirmarSenha, setConfirmarSenha] = useState<string>("")
+  const [confirmarSenha, setConfirmarSenha] = useState<string>(initialUsuario?.numeroSenha ? initialUsuario?.numeroSenha : "")
   const [confirmarSenhaError, setConfirmarSenhaError] = useState<string>("")
 
   const handleConfirmarSenha = (e: ChangeEvent<HTMLInputElement>) => {
@@ -208,14 +219,6 @@ const RegisterForm = () => {
       setConfirmarSenhaError(""); 
     }
   }
-
-  const isValidCpf = (cpf: string) => {
-    return (!/^\d{5}$/.test(cpf)); 
-  };
-
-  const isValidCnpj = (cnpj: string) => {
-    return (!/^\d{14}$/.test(cnpj));
-  };
 
   const isValidUrl = (url: string) => {
     const pattern = new RegExp('^(https?:\\/\\/)?' +
@@ -247,8 +250,8 @@ const RegisterForm = () => {
 
   async function submitCallback(values: FormState) {
     try {
-      const response = await fetch('/api/usuario', {
-        method: 'POST',
+      const response = await fetch(isUpdate ? `/api/usuario/${data.idUsuario}`: '/api/usuario', {
+        method: isUpdate ? 'PUT' : 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -257,45 +260,66 @@ const RegisterForm = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Erro ao realizar registro');
+        throw new Error(errorData.message || isUpdate ? 'Erro ao atualizar usuário' : 'Erro ao realizar registro');
       }
 
       // const result = await response.json();
-      toastAlerta("Usuário registrado com sucesso!", "sucesso")
+      toastAlerta(isUpdate ? "Usuário atualizado com sucesso!" : "Usuário registrado com sucesso!", "sucesso")
+      if(isUpdate) {
+        localStorage.setItem('authToken', data.token || `${values.cnpj || values.cpf}.${values.numeroSenha}`);
+        router.push('/perfil');
+      } else {
       router.push('/login'); 
+      }
     } catch (error) {
       if (error instanceof Error) {
         return submitErrorCallback(error);
       }
-      return submitErrorCallback(new Error('Erro ao realizar registro'));
+      return submitErrorCallback(new Error(isUpdate ? 'Erro ao atualizar usuário' : 'Erro ao realizar registro'));
     }
   }
+  
+  const maskCpf = (value: string) => {
+    const cleaned = value.replace(/\D/g, '');
+    return cleaned.replace(/(\d{3})(\d{0,3})(\d{0,3})(\d{0,2})/, (_, p1, p2, p3, p4) => {
+      let formatted = p1;
+      if (p2) formatted += '.' + p2;
+      if (p3) formatted += '.' + p3;
+      if (p4) formatted += '-' + p4;
+      return formatted;
+    });
+  };
 
-  // const maskCpf = (value: string) => {
-  //   const cleaned = value.replace(/\D/g, '')
-  //   return cleaned.replace(/(\d{3})(\d{0,3})(\d{0,3})(\d{0,2})/, (_, p1, p2, p3, p4) => {
-  //     let formatted = p1
-  //     if (p2) formatted += '.' + p2
-  //     if (p3) formatted += '.' + p3
-  //     if (p4) formatted += '-' + p4
-  //     return formatted
-  //   })
-  // }
+  const maskCnpj = (value: string) => {
+    const cleaned = value.replace(/\D/g, '');
+    return cleaned.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})/, (_, p1, p2, p3, p4, p5) =>
+      [p1, p2, p3].join('.').concat(`/${p4}`).concat(p5 ? `-${p5}` : '')
+    );
+  };
 
-  const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleChange(e)
-  }
+  const [formattedCnpjValue, setFormattedCnpjValue] = useState<string>(maskCnpj(initialUsuario?.cnpj ? initialUsuario?.cnpj : ""));
+  const [formattedCpfValue, setFormattedCpfValue] = useState<string>(maskCpf(initialUsuario?.cpf ? initialUsuario?.cpf : ""));
 
-  // const maskCnpj = (value: string) => {
-  //   const cleaned = value.replace(/\D/g, '')
-  //   return cleaned.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})/, (_, p1, p2, p3, p4, p5) =>
-  //     [p1, p2, p3].join('.').concat(`/${p4}`).concat(p5 ? `-${p5}` : '')
-  //   )
-  // }
+
+  const handleCpfChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const maskedValue = maskCpf(e.target.value);
+    setFormattedCpfValue(maskedValue);
+
+    const cleanedCpfValue = maskedValue.replace(/\D/g, '');
+    handleChange({
+      target: { name: 'cpf', value: cleanedCpfValue },
+    } as React.ChangeEvent<HTMLInputElement>);
+  };
 
   const handleCnpjChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleChange(e)
-  }
+    const maskedValue = maskCnpj(e.target.value);
+    setFormattedCnpjValue(maskedValue);
+
+    const cleanedCnpjValue = maskedValue.replace(/\D/g, '');
+    handleChange({
+      target: { name: 'cnpj', value: cleanedCnpjValue },
+    } as React.ChangeEvent<HTMLInputElement>);
+  };
 
   const addEmail = () => {
     const newEmail: Email = {
@@ -483,7 +507,7 @@ const validateStep4 = () => {
                 label="CPF"
                 type="text"
                 name="cpf"
-                value={data.cpf}
+                value={formattedCpfValue}
                 handleChange={(_, e) => handleCpfChange(e)}
                 customError={errors.cpf}
                 readOnly={loadingSubmit}
@@ -509,7 +533,7 @@ const validateStep4 = () => {
             label="CNPJ"
             type="text"
             name="cnpj"
-            value={data.cnpj}
+            value={formattedCnpjValue}
             handleChange={(_, e) => handleCnpjChange(e)}
             customError={errors.cnpj}
             readOnly={loadingSubmit}
@@ -591,6 +615,7 @@ const validateStep4 = () => {
                   handleChange={(_, e) => handleChange(e)}
                   customError={errors.numeroCep}
                   className="w-full flex-grow"
+                  readOnly={loadingSubmit}
                   wrapperClassName='w-full'
                 />
                 <section className="flex w-full gap-2">
@@ -602,6 +627,7 @@ const validateStep4 = () => {
                     handleChange={(_, e) => handleChange(e)}
                     customError={errors.nomeRua}
                     className="w-full flex-grow"
+                    readOnly={loadingSubmit}
                     wrapperClassName='w-3/6'
                   />
                   <Input
@@ -612,6 +638,7 @@ const validateStep4 = () => {
                     handleChange={(_, e) => handleChange(e)}
                     customError={errors.numeroEndereco}
                     className="w-full flex-grow"
+                    readOnly={loadingSubmit}
                     wrapperClassName='w-1/6'
                   />
                   <Input
@@ -621,6 +648,7 @@ const validateStep4 = () => {
                     value={endereco.nomeBairro}
                     handleChange={(_, e) => handleChange(e)}
                     customError={errors.nomeBairro}
+                    readOnly={loadingSubmit}
                     className="w-full flex-grow"
                     wrapperClassName='w-3/6'
                   />
@@ -633,6 +661,7 @@ const validateStep4 = () => {
                     value={endereco.nomeEstado}
                     handleChange={(_, e) => handleChange(e)}
                     customError={errors.nomeEstado}
+                    readOnly={loadingSubmit}
                     className="w-full flex-grow"
                     wrapperClassName='w-full'
                   />
@@ -643,6 +672,7 @@ const validateStep4 = () => {
                     value={endereco.nomeCidade}
                     handleChange={(_, e) => handleChange(e)}
                     customError={errors.nomeCidade}
+                    readOnly={loadingSubmit}
                     className="w-full flex-grow"
                     wrapperClassName='w-full'
                   />
@@ -654,6 +684,7 @@ const validateStep4 = () => {
                   value={endereco.complemento}
                   handleChange={(_, e) => handleChange(e)}
                   customError={errors.complemento}
+                  readOnly={loadingSubmit}
                   className="w-full flex-grow"
                   wrapperClassName='w-full'
                 />
@@ -681,6 +712,7 @@ const validateStep4 = () => {
                   name={`emails.${index}.email`}
                   value={data.emails[index].email}
                   handleChange={(_, e) => handleChange(e)}
+                  readOnly={loadingSubmit}
                   className="w-full flex-grow"
                   wrapperClassName='w-full'
                 />
@@ -699,6 +731,7 @@ const validateStep4 = () => {
                   type="text"
                   value={data.telefones[index].DDD}
                   handleChange={(_, e) => handleChange(e)}
+                  readOnly={loadingSubmit}
                   className="w-full"
                   wrapperClassName='w-1/6'
                 />
@@ -708,6 +741,7 @@ const validateStep4 = () => {
                   type="text"
                   value={data.telefones[index].DDI}
                   handleChange={(_, e) => handleChange(e)}
+                  readOnly={loadingSubmit}
                   className="w-full"
                   wrapperClassName='w-1/6'
                 />
@@ -715,8 +749,9 @@ const validateStep4 = () => {
                   label={`Telefone ${index + 1}`}
                   name={`telefones.${index}.numeroTelefone`}
                   type="text"
-                  value={data.telefones[index].telefone}
+                  value={data.telefones[index].telefone || telefone.numeroTelefone}
                   handleChange={(_, e) => handleChange(e)}
+                  readOnly={loadingSubmit}
                   className="w-full"
                   wrapperClassName='w-2/6'
                 />
@@ -726,6 +761,7 @@ const validateStep4 = () => {
                   type="text"
                   value={data.telefones[index].lembrete}
                   handleChange={(_, e) => handleChange(e)}
+                  readOnly={loadingSubmit}
                   className="w-full"
                   wrapperClassName='w-2/6'
                 />
@@ -752,6 +788,7 @@ const validateStep4 = () => {
                 value={data.fornecedor.energiaPrimaria || ''}
                 handleChange={(_, e) => handleChange(e)}
                 customError={errors.energiaPrimaria}
+                readOnly={loadingSubmit}
                 required
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
@@ -763,6 +800,7 @@ const validateStep4 = () => {
                 value={data.fornecedor.dataOperacao || ''}
                 handleChange={(_, e) => handleChange(e)}
                 customError={errors.dataOperacao}
+                readOnly={loadingSubmit}
                 required
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
@@ -788,6 +826,7 @@ const validateStep4 = () => {
                 value={data.fornecedor.capacidade || ''}
                 handleChange={(_, e) => handleChange(e)}
                 customError={errors.capacidade}
+                readOnly={loadingSubmit}
                 required
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
@@ -799,6 +838,7 @@ const validateStep4 = () => {
                 value={data.fornecedor.licenciatura || ''}
                 handleChange={(_, e) => handleChange(e)}
                 customError={errors.licenciatura}
+                readOnly={loadingSubmit}
                 required
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
@@ -813,11 +853,13 @@ const validateStep4 = () => {
                 label="Região"
                 customError={errors.regiao}
                 options={[
-                  { value: 'norte', label: 'Norte' },
-                  { value: 'nordeste', label: 'Nordeste' },
-                  { value: 'centro-oeste', label: 'Centro-Oeste' },
-                  { value: 'sudeste', label: 'Sudeste' },
-                  { value: 'sul', label: 'Sul' },
+                  { value: 'Norte', label: 'Norte' },
+                  { value: 'Nordeste', label: 'Nordeste' },
+                  { value: 'Centro-Oeste', label: 'Centro-Oeste' },
+                  { value: 'Sudeste', label: 'Sudeste' },
+                  { value: 'Sul', label: 'Sul' },
+                  { value: 'Leste', label: 'Leste' },
+                  { value: 'Oeste', label: 'Oeste' },
                 ]}
               />
             </>
@@ -832,6 +874,7 @@ const validateStep4 = () => {
                 customError={errors.classeConsumo}
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
+                readOnly={loadingSubmit}
               />
               <Input
                 label="Tipo de Consumo"
@@ -842,6 +885,7 @@ const validateStep4 = () => {
                 customError={errors.tipoConsumo}
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
+                readOnly={loadingSubmit}
               />
               <Input
                 label="Consumo Energético"
@@ -852,6 +896,7 @@ const validateStep4 = () => {
                 customError={errors.consumoEnergetico}
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
+                readOnly={loadingSubmit}
               />
               <Input
                 label="Número do Medidor"
@@ -862,6 +907,7 @@ const validateStep4 = () => {
                 customError={errors.numeroMedidor}
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
+                readOnly={loadingSubmit}
               />
               <Input
                 label="Tarifa"
@@ -871,6 +917,7 @@ const validateStep4 = () => {
                 handleChange={(_, e) => handleChange(e)}
                 customError={errors.tarifa}
                 className="w-full flex-grow"
+                readOnly={loadingSubmit}
                 wrapperClassName='w-full'
               />
               <Input
@@ -882,6 +929,7 @@ const validateStep4 = () => {
                 customError={errors.consumoMes}
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
+                readOnly={loadingSubmit}
               />
               <Input
                 label="Última Data de Leitura"
@@ -892,12 +940,14 @@ const validateStep4 = () => {
                 customError={errors.ultimaLeitura}
                 className="w-full flex-grow"
                 wrapperClassName='w-full'
+                readOnly={loadingSubmit}
               />
             </>
           )}
         </>
       ),
       onSubmit: handleSubmit,
+      onPrev: handlePrevStep,
     },
   ]
 
@@ -910,6 +960,8 @@ const validateStep4 = () => {
         handlePrevStep={handlePrevStep}
         formRef={formRef}
         errorsCount={errorsCount}
+        loadingSubmit={loadingSubmit}
+        isUpdate={isUpdate}
       />
     </section>
   )

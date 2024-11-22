@@ -3,6 +3,7 @@ import React, { RefObject } from 'react';
 import ProgressCircles from '../progresscircles/progresscircles.component';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import Link from 'next/link';
+import Loader from '@/components/loader/loader.component';
 
 interface StepFormProps {
   currentStep: number;
@@ -17,6 +18,8 @@ interface StepFormProps {
   handlePrevStep: () => void; 
   formRef: RefObject<HTMLFormElement>;
   errorsCount: number;
+  loadingSubmit: boolean;
+  isUpdate?: boolean;
 }
 
 const StepForm = ({
@@ -26,12 +29,14 @@ const StepForm = ({
   handlePrevStep,
   formRef,
   errorsCount,
+  loadingSubmit,
+  isUpdate
 }: StepFormProps) => {
   const { content, onSubmit, onNext, onPrev } = steps[currentStep - 1];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (onSubmit && errorsCount < 0) {
+    if (onSubmit && errorsCount <= 0) {
       await onSubmit(e);
     }
   };
@@ -62,8 +67,11 @@ const StepForm = ({
             type="submit"
             backgroundColor="backgroundlight"
             className='w-fit py-2 px-16 flex gap-2 text-center justify-start items-center group border border-transparent hover:border-foreground hover:bg-transparent transition-all ease-in-out'
+            disabled={loadingSubmit}
           >
-            Finalizar Cadastro
+            {
+              loadingSubmit ? <Loader classNameWrapper={'w-fit h-fit px-16 flex gap-2 text-center justify-start items-center'} classNameLoader={'border-background w-fit h-fit'} haveLabel={false} label={''}/> : isUpdate ? 'Atualizar Usuario' : 'Finalizar Cadastro'
+            }
           </Button>
         ) : (
           <Button 

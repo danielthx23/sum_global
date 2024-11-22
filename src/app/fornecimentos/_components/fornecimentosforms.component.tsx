@@ -14,9 +14,10 @@ interface FornecimentosFormProps {
   initialFornecimento?: Fornecimento; 
   isUpdate?: boolean;
   tipoDeEnergiaOptions: { value: string; label: string }[];
+  tipoDeContratoOptions: { value: string; label: string }[];
 }
 
-const FornecimentosForm: React.FC<FornecimentosFormProps> = ({ onSubmit, initialFornecimento, isUpdate = false, tipoDeEnergiaOptions }) => {
+const FornecimentosForm = ({ onSubmit, initialFornecimento, isUpdate = false, tipoDeEnergiaOptions, tipoDeContratoOptions }: FornecimentosFormProps) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const initialFornecimentoForm = {
@@ -74,16 +75,16 @@ const FornecimentosForm: React.FC<FornecimentosFormProps> = ({ onSubmit, initial
         className="w-full"
       />
       
-      <Input
+      <Select
         label="Tipo de Contratação"
         name="tipoContrato"
         value={tipoContrato}
         handleChange={(_, e) => handleChange(e)}
         customError={errors.tipoContrato}
         required
-        readOnly={loadingSubmit}
-        placeholder="Tipo de contratação"
+        disabled={loadingSubmit}
         className="w-full"
+        options={tipoDeContratoOptions}
       />
       
       <Input
@@ -97,6 +98,7 @@ const FornecimentosForm: React.FC<FornecimentosFormProps> = ({ onSubmit, initial
         readOnly={loadingSubmit}
         placeholder="Preço por kWh"
         className="w-full"
+        step={0.01}
       />
       
       <Input
@@ -118,6 +120,7 @@ const FornecimentosForm: React.FC<FornecimentosFormProps> = ({ onSubmit, initial
         handleChange={(_, e) => handleChange(e)}
         customError={errors.tipoEnergia}
         options={tipoDeEnergiaOptions}
+        disabled={loadingSubmit}
         required
         className="w-full"
       />
@@ -139,9 +142,9 @@ const FornecimentosForm: React.FC<FornecimentosFormProps> = ({ onSubmit, initial
         disabled={loadingSubmit || errorsCount > 0}
         backgroundColor="backgroundlight"
         textColor="foreground"
-        className="mt-8 w-full"
+        className="mt-8 w-full flex justify-center items-center"
       >
-        {loadingSubmit ? <Loader classNameWrapper={'w-fit h-fit'} classNameLoader={'w-fit h-fit border-foregroundopacity20'} haveLabel={false} label={''}/> : isUpdate ? 'Atualizar Fornecimento' : 'Criar Fornecimento'}
+        {loadingSubmit ? <Loader classNameWrapper={'w-fit h-fit'} classNameLoader={'w-fit h-fit border-foreground text-foreground'} haveLabel={false} label={''}/> : isUpdate ? 'Atualizar Fornecimento' : 'Criar Fornecimento'}
       </Button>
     </form>
   );

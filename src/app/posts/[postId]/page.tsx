@@ -96,7 +96,7 @@ const PostDetails = () => {
                         />
                         <span>{post.usuario.nomeUsuario}</span>
                     </div>
-                    <p>{new Date(post.dataCadastro).toLocaleDateString()}</p>
+                    <p>{post.dataCadastro.toString()}</p>
                 </article>
             </section>
             <h2 className="text-xl font-semibold mt-6">Comentários:</h2>

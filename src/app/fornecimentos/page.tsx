@@ -83,6 +83,7 @@ const Fornecimentos = () => {
         setSelectedRegiao("");
         setSearchQuery("");
     };
+    
 
     return (
         <main className="w-full flex p-4">
@@ -118,7 +119,7 @@ const Fornecimentos = () => {
                     label="Tipo de Energia:"
                     options={[
                         { value: "", label: "Todos" },
-                        { value: "Elétrica", label: "Elétrica" },
+                        { value: "Hidroeletrica", label: "Hidroeletrica" },
                         { value: "Solar", label: "Solar" },
                         { value: "Eólica", label: "Eólica" }
                     ]}
@@ -133,7 +134,8 @@ const Fornecimentos = () => {
                         { value: "Norte", label: "Norte" },
                         { value: "Sul", label: "Sul" },
                         { value: "Leste", label: "Leste" },
-                        { value: "Oeste", label: "Oeste" }
+                        { value: "Oeste", label: "Oeste" },
+                        { value: "Sudeste", label: "Sudeste" }
                     ]}
                     handleChange={(value) => setSelectedRegiao(value)}
                     value={selectedRegiao}

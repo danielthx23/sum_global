@@ -79,7 +79,7 @@ async function submitCallback(values: FormState) {
         //const data = await response.json();
 
         toastAlerta('Comentário enviado com sucesso!', 'sucesso');
-        router.push(`/posts/${postId}`);
+        router.push("/posts");
     } catch (error) {
         if (error instanceof Error) {
             return submitErrorCallback(error);

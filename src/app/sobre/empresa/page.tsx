@@ -1,11 +1,11 @@
 import Image from 'next/image';
+import WWTECH from '../../../../public/logos/worldwide_blue.svg'
 
 const SobreEmpresa: React.FC = () => {
   return (
     <div className="flex flex-col items-center w-full bg-black p-24 text-white">
-      {/* Section 1 */}
       <section className="flex flex-col items-center mb-16 p-16 gap-12">
-        <Image src={'swag'} alt="Worldwide Tech" width={400} height={400} />
+        <Image src={WWTECH} alt="Worldwide Tech" width={400} height={400} />
         <h1 className="text-2xl font-bold">Sobre a Worldwide Tech</h1>
         <p className="text-base leading-7">
           A Worldwide Tech é uma empresa dedicada a desenvolver soluções inovadoras em software e aplicativos que impulsionam a inteligência artificial além das fronteiras, transformando a maneira como as pessoas vivem e trabalham.
@@ -15,7 +15,6 @@ const SobreEmpresa: React.FC = () => {
         </p>
       </section>
 
-      {/* Section 2 */}
       <section className="flex flex-col items-center mb-16 p-16">
         <h1 className="text-2xl font-bold">Desenvolvedores</h1>
         <div className="flex gap-8 mt-8">
@@ -25,7 +24,6 @@ const SobreEmpresa: React.FC = () => {
         </div>
       </section>
 
-      {/* Section 3 */}
       <section className="flex flex-col items-center mb-16 p-16 gap-6">
         <h2 className="text-xl font-bold">Missão, Visão e Valores</h2>
         <p className="text-base leading-7">
@@ -39,7 +37,6 @@ const SobreEmpresa: React.FC = () => {
         </p>
       </section>
 
-      {/* Section 4 */}
       <section className="flex flex-col items-center mb-16 p-16">
         <h2 className="text-xl font-bold">Posicionamento de Marca</h2>
         <p className="text-base leading-7 mt-4">

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { notFound, useParams } from 'next/navigation';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import PostsForm from '../../_components/postsform/postsform.component';
 import Loader from '@/components/loader/loader.component';
 import SemPermissao from '@/components/sempermissao/sempermissao.component';
@@ -14,6 +14,7 @@ const UpdatePostForm = () => {
     const { usuario } = useAuth();
     const [post, setPost] = useState<Post | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const router = useRouter();
     
     const params = useParams();
     const id = params.id;
@@ -64,12 +65,13 @@ const UpdatePostForm = () => {
 
             const result = await response.json();
             if (response.ok) {
-                toastAlerta('Post updated successfully!', 'sucesso');
+                toastAlerta('Post atualizado com sucesso!', 'sucesso');
+                router.push('/posts')
             } else {
-                throw new Error(result.message || 'Failed to update post');
+                throw new Error(result.message || 'Falha ao atualizar post');
             }
         } catch (error) {
-            toastAlerta(error instanceof Error ? error.message : 'Error updating post', 'erro');
+            toastAlerta(error instanceof Error ? error.message : 'Erro ao atualizar Post', 'erro');
         }
     };
 

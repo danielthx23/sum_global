@@ -84,13 +84,19 @@ const UpdateFornecimentoForm = () => {
     { value: 'EnergiaHidreletrica', label: 'Energia Hidrelétrica' },
   ];
 
+  const tipoDeContratoOptions = [
+    { value: 'Anual', label: 'Anual' },
+    { value: 'Mensal', label: 'Mensal' },
+    { value: 'Vitalicio', label: 'Vitalicio' },
+    { value: 'A Combinar', label: 'A Combinar' },
+  ];
+
   return (
     <FornecimentosForm
       onSubmit={submitCallback}
       initialFornecimento={fornecimento}
       tipoDeEnergiaOptions={tipoDeEnergiaOptions}
-      isUpdate={true}
-    />
+      isUpdate={true} tipoDeContratoOptions={tipoDeContratoOptions}    />
   );
 };
 

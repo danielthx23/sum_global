@@ -7,12 +7,18 @@ import { useRouter } from 'next/navigation'
 import Usuario from '@/types/usuario/usuario.type'
 import Loader from '@/components/loader/loader.component'
 import { toastAlerta } from '@/utils/toastalert/toastalert.util'
+import Link from 'next/link'
+import SemPermissao from '@/components/sempermissao/sempermissao.component'
 
 const ProfilePage = () => {
   const router = useRouter()
   const { usuario } = useAuth() 
   const [userData, setUserData] = useState<Usuario>()
   const [loading, setLoading] = useState(true)
+
+  if (!usuario) {
+    return <SemPermissao/>;
+  }
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -45,7 +51,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="profile-container bg-backgroundlight p-6 rounded-lg shadow-md">
+    <div className="flex mx-auto w-fit flex-col gap-4 m-16 px-48 py-24 rounded-lg shadow-md">
   <h1 className="text-2xl font-bold text-foreground mb-4">Perfil do Usuário</h1>
   <div className="profile-details flex items-center mb-6">
     <div className="profile-photo mr-4">
@@ -54,7 +60,7 @@ const ProfilePage = () => {
         alt="Foto de Perfil"
         width={150}
         height={150}
-        className="rounded-full border-2 border-foreground opacity-80"
+        className="rounded-full border-2 border-background"
       />
     </div>
     <div className="profile-info">
@@ -64,7 +70,7 @@ const ProfilePage = () => {
       <h3 className="text-sm text-foregroundopacity80">
         CNPJ: {userData?.cnpj}
       </h3>
-      <p className="text-sm text-foregroundopacity80">Data de Cadastro: {userData?.dataCadastro.toLocaleDateString()}</p>
+      <p className="text-sm text-foregroundopacity80">Data de Cadastro: {userData?.dataCadastro.toString()}</p>
     </div>
   </div>
 
@@ -118,7 +124,7 @@ const ProfilePage = () => {
       <p className ="text-foregroundopacity80">Número do Medidor: {userData.consumidor.numeroMedidor}</p>
       <p className="text-foregroundopacity80">Tarifa: R$ {userData.consumidor.tarifa}</p>
       <p className="text-foregroundopacity80">Consumo de Energia no Mês: {userData.consumidor.consumoMes} kWh</p>
-      <p className="text-foregroundopacity80">Última Data de Leitura: {new Date(userData.consumidor.ultimaLeitura).toLocaleDateString()}</p>
+      <p className="text-foregroundopacity80">Última Data de Leitura: {userData.consumidor.ultimaLeitura.toString()}</p>
     </div>
   )}
 
@@ -129,9 +135,11 @@ const ProfilePage = () => {
       <p className="text-foregroundopacity80">Capacidade do Fornecedor: {userData.fornecedor.capacidade}</p>
       <p className="text-foregroundopacity80">Licenciatura: {userData.fornecedor.licenciatura}</p>
       <p className="text-foregroundopacity80">Status: {userData.fornecedor.status}</p>
-      <p className="text-foregroundopacity80">Data de Registro: {new Date(userData.fornecedor.dataOperacao).toLocaleDateString()}</p>
+      <p className="text-foregroundopacity80">Data de Registro: {userData.fornecedor.dataOperacao.toString()}</p>
     </div>
   )}
+
+  <Link href="/perfil/update" className='px-4 py-2 bg-foreground text-background rounded-md m-4 hover:bg-background hover:text-foreground transition-all ease-in-out text-center'>Atualizar Usuário</Link>
 </div>
   )
 }

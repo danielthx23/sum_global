@@ -23,7 +23,7 @@ const Button = ({ children, handleClick, disabled, className = '', backgroundCol
     <button
       {...props} // Passa todas as outras propriedades para o botão HTML
       onClick={onHandleClick} // Atribui o callback de clique ao evento onClick
-      className={`px-4 py-2 text-${textColor} rounded-md ${disabled ? 'bg-foregroundlight text-gray-400 cursor-not-allowed' : `bg-${backgroundColor} hover:bg-${backgroundColor}`} ${className} ` } // Classes CSS condicionais baseadas em propriedades
+      className={`px-4 py-2 text-${textColor} rounded-md ${disabled ? 'bg-foregroundopacity20 text-foregroundopacity80 cursor-not-allowed' : `bg-${backgroundColor} hover:bg-${backgroundColor}`} ${className} ` } // Classes CSS condicionais baseadas em propriedades
       disabled={disabled} // Define se o botão está desabilitado ou não
     >
       {children} {/* Renderiza o conteúdo dentro do botão */}

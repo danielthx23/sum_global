@@ -46,18 +46,20 @@ const MyCertificados = () => {
 
     return (
         <main className="w-full p-10 flex flex-col items-center">
-            <h1 className="text-2xl font-bold mb-6">Meus Certificados</h1>
             {filteredCertificados.length === 0 ? (
-                <div className="w-full text-center py-8">
+                <div className="w-full text-center py-8 h-screen flex flex-col gap-4 justify-center items-center">
                     <h2 className="text-xl font-semibold">Você ainda não possui Certificados.</h2>
-                    <p className="text-gray-500 mt-4">Que tal criar o seu primeiro Certificado?</p>
+                    <p className="text-gray-500 mt-4">Utilize os dashboards para ser elegivel a um!</p>
                 </div>
             ) : (
+                <>
+                <h1 className="text-2xl font-bold mb-6">Meus Certificados</h1>
                 <div className="w-full p-8 grid grid-cols-4 gap-4">
                     {filteredCertificados.map((certificado) => (
                         <CardCertificado key={certificado.idCertificado} certificado={certificado} />
                     ))}
                 </div>
+                </>
             )}
             <section className="w-full mt-10 p-6 border border-gray-300 rounded-lg">
                 <h2 className="text-xl font-semibold mb-4">Dashboard</h2>

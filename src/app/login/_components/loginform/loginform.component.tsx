@@ -141,7 +141,7 @@ const LoginForm = () => {
       } as React.ChangeEvent<HTMLInputElement>);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formattedValue.length > 0]);
+  }, [formattedValue]);
 
   return (
     <form

@@ -6,6 +6,7 @@ import Input from "@/components/input/input.component";
 import useForm, { FormState } from "@/hooks/useform/useform.hook";
 import Textarea from '@/components/textarea/textarea.component';
 import Post from '@/types/post/post.type';
+import Loader from '@/components/loader/loader.component';
 
 interface PostsFormProps {
   onSubmit: (values: FormState) => Promise<void>;
@@ -87,9 +88,9 @@ const PostsForm: React.FC<PostsFormProps> = ({ onSubmit, initialPost, isUpdate =
         disabled={loadingSubmit || errorsCount > 0}
         backgroundColor="backgroundlight"
         textColor="foreground"
-        className="mt-8 w-full"
+        className="mt-8 w-full flex justify-center items-center"
       >
-        {loadingSubmit ? 'Carregando...' : isUpdate ? 'Atualizar Post' : 'Criar Post'}
+        {loadingSubmit ? <Loader classNameWrapper={'w-fit h-fit'} classNameLoader={'w-fit h-fit border-foreground text-foreground'} haveLabel={false} label={''}/> : isUpdate ? 'Atualizar Post' : 'Criar Post'}
       </Button>
     </form>
   );

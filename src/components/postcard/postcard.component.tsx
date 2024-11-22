@@ -40,7 +40,7 @@ const PostCard = ({ post }: PostCardProps) => {
                 </div>
             </article>
             <p>
-                {post.dataCadastro ? post.dataCadastro.toLocaleString() : 'Sem data de cadastro'}
+                {post.dataCadastro ? post.dataCadastro.toString() : 'Sem data de cadastro'}
             </p>
             <Link href={`/posts/${post.idPost}`} className="underline">Ver post completo</Link>
         </div>

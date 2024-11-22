@@ -27,11 +27,13 @@ const CreatePostForm = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(postData),
       });
-      const response = await request.json();
- if (!response.success) {
-        toastAlerta('Post salvado com sucesso!', "sucesso")
+      if (!request.ok) {
+        const errorData = await request.json();
+        throw new Error(errorData.message || 'Ocorreu um erro desconhecido.');
       }
-      router.push('/');
+      const response = await request.json();
+      toastAlerta('Post salvado com sucesso!', "sucesso")
+      router.push('/posts');
     } catch (error) {
       toastAlerta('Erro ao salvar Post: ' + error, "sucesso")
     }

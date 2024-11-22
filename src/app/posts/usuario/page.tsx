@@ -6,8 +6,9 @@ import Loader from '@/components/loader/loader.component';
 import useAuth from '@/hooks/useauth/useauth.hook';
 import Post from "@/types/post/post.type";
 import { toastAlerta } from '@/utils/toastalert/toastalert.util';
+import Link from 'next/link';
 
-const MyPosts = () => {
+const MeusPosts = () => {
     const { usuario } = useAuth(); 
     const [userPosts, setUserPosts] = useState<Post[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -41,9 +42,10 @@ const MyPosts = () => {
 
     if (userPosts && userPosts.length === 0) {
         return (
-            <div className="w-full text-center py-8">
+            <div className="h-screen flex justify-center items-center flex-col gap-2 w-full text-center py-8">
                 <h2 className="text-xl font-semibold">Você ainda não possui posts.</h2>
                 <p className="text-gray-500 mt-4">Que tal criar o seu primeiro post?</p>
+                <Link href="/posts/create" className='mt-4 px-8 py-2 bg-foreground text-background hover:bg-background hover:text-foreground transition-all ease-in-out rounded-md'>Criar Post</Link>
             </div>
         );
     }
@@ -56,4 +58,4 @@ const MyPosts = () => {
     );
 };
 
-export default MyPosts;
+export default MeusPosts;

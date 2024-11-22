@@ -8,11 +8,12 @@ import { FormState } from '@/hooks/useform/useform.hook';
 import SemPermissao from '@/components/sempermissao/sempermissao.component';
 import FornecimentosForm from '../_components/fornecimentosforms.component';
 import { toastAlerta } from '@/utils/toastalert/toastalert.util';
+import Usuario from '@/types/usuario/usuario.type';
 
 const FornecimentoPostForm = () => {
   const router = useRouter();
   const { usuario } = useAuth();
-  const [fornecedorData, setFornecedorData] = useState();
+  const [fornecedorData, setFornecedorData] = useState<Usuario>();
 
   useEffect(() => {
     const fetchFornecedorData = async () => {
@@ -29,7 +30,7 @@ const FornecimentoPostForm = () => {
       };
 
     fetchFornecedorData();
-  }, [usuario, fornecedorData]); 
+  }, [usuario]); 
 
   if (!usuario || usuario.tipoConta !== 'fornecedor') {
     return <SemPermissao />;
@@ -39,7 +40,7 @@ const FornecimentoPostForm = () => {
     try {
       const fornecimentoData: Fornecimento = {
         ...values,
-        fornecedor: fornecedorData,
+        fornecedor: fornecedorData?.fornecedor,
         idFornecimento: 0,
         fornecimentoImagem: values.fornecimentoImagem || 'https://shopify.dev/assets/templated-apis-screenshots/pos-ui-extensions/2024-10/image-default.png',
         tipoContrato: values.tipoContrato || '',
@@ -55,29 +56,36 @@ const FornecimentoPostForm = () => {
         body: JSON.stringify(fornecimentoData),
       });
 
-      const response = await request.json();
-      if (!response.success) {
-        throw new Error(response.message);
+      if (!request.ok) {
+        const errorData = await request.json();
+        throw new Error(errorData.message || 'Ocorreu um erro desconhecido.');
       }
 
+      const response = await request.json();
       toastAlerta('Fornecimento salvado com sucesso!', 'sucesso');
-      router.push('/'); 
+      router.push('/fornecimentos'); 
     } catch (error) {
-      toastAlerta('Erro ao salvar fornecimento! ' + error, 'erro');
+      toastAlerta("Erro ao salvar o fornecimento: " + error, 'erro');
     }
   };
 
   const tipoDeEnergiaOptions = [
-    { value: 'EnergiaSolar', label: 'Energia Solar' },
-    { value: 'EnergiaEolica', label: 'Energia Eólica' },
-    { value: 'EnergiaHidreletrica', label: 'Energia Hidrelétrica' },
+    { value: 'Solar', label: 'Energia Solar' },
+    { value: 'Eólica', label: 'Energia Eólica' },
+    { value: 'Hidroeletrica', label: 'Energia Hidrelétrica' },
+  ];
+  
+  const tipoDeContratoOptions = [
+    { value: 'Anual', label: 'Anual' },
+    { value: 'Mensal', label: 'Mensal' },
+    { value: 'Vitalicio', label: 'Vitalicio' },
+    { value: 'A Combinar', label: 'A Combinar' },
   ];
 
   return (
     <FornecimentosForm
       onSubmit={submitCallback}
-      tipoDeEnergiaOptions={tipoDeEnergiaOptions}
-    />
+      tipoDeEnergiaOptions={tipoDeEnergiaOptions} tipoDeContratoOptions={tipoDeContratoOptions}    />
   );
 };
 

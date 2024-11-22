@@ -118,7 +118,7 @@ Se você quiser acessar as variaveis de ambiente acesse essa aba
 
 Caso você queira acessar os logs da aplicação Java Dockerizada acesse aqui, caso o deploy devolva status code 500 você pode ler qual erro deu por aqui.
 
-![render-3](./public/sum_layoutrender-3.png)
+![render-3](./public/sum_layout/render-3.png)
 
 ## Link do Video da Explicação
 

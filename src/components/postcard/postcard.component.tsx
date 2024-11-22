@@ -13,7 +13,7 @@ const PostCard = ({ post }: PostCardProps) => {
     
     return (
         <div className="w-full bg-background text-foreground rounded-md border border-foregroundopacity20 p-8 shadow-md flex flex-col gap-4">
-            <article className="flex flex-col lg:flex-row justify-between">
+            <article className="flex flex-col lg:flex-row justify-between gap-4">
                 <figure className="w-full flex gap-4">
                     <Image
                         className="w-[80px] object-contain rounded-md "
@@ -27,7 +27,7 @@ const PostCard = ({ post }: PostCardProps) => {
                         <p className="line-clamp-2 w-5/6">{post.descricao}</p>
                     </figcaption>
                 </figure>
-                <div className="w-full flex justify-end sm:justify-start items-center gap-4">
+                <div className="w-full flex items-center gap-4 xs:justify-start sm:justify-start md:justify-end lg:justify-end xl:justify-end">
                 <p>{post.usuario.nomeUsuario}</p>
                     <Image
                         className="w-[40px] h-[40px] rounded-full object-cover"

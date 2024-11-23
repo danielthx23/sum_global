@@ -37,7 +37,7 @@ export default function Home() {
       title: "Diversos Fornecedores de Energia Limpa",
       subtitle: "Encontre fornecedores com 100% de energia renovável com preços competitivos no mercado.",
       image: SolarPanel,
-      link: "/fornecedores",
+      link: "/fornecimentos",
       alt: "Fornecedores de energia limpa",
       textColor: "#ffffff",
     },
@@ -45,7 +45,7 @@ export default function Home() {
       title: "Torne-se um Usuário de Energia Limpa",
       subtitle: "Descubra os 3 dos requisitos para adotar energia limpa:",
       image: BulbClean,
-      link: "/como-adotar",
+      link: "/fornecimentos",
       alt: "Adote energia limpa",
       textColor: "#080808",
       listItems: <MainCarouselSlideList listItems={slideList} />
@@ -54,7 +54,7 @@ export default function Home() {
       title: "Gerencie Certificados de Energia Limpa",
       subtitle: "Oferecemos dashboards para gestão de certificados de energia renovável.",
       image: GreenCertificate,
-      link: "/certificados",
+      link: "/certificados/usuario",
       alt: "Certificados de energia limpa",
       textColor: "#080808"
     }
@@ -63,19 +63,19 @@ export default function Home() {
     const ofertaContainers: Oferta[] = [
       {
         titulo: "Consulte nossos dashboards para fazer gestões e gerar certificados!",
-        link: "/dashboard",
+        link: "/certificados/usuario",
         label: "Dashboard",
         imagem: AnalyticsStatus,
       },
       {
         titulo: "Envie posts de discussões, perguntas e comentários no nosso fórum!",
-        link: "/forum",
+        link: "/posts",
         label: "Acessar Fórum",
         imagem: ForumIcon, 
       },
       {
         titulo: "Conheça fornecedores de energia renovável e encontre soluções específicas!",
-        link: "/fornecedores",
+        link: "/fornecimentos",
         label: "Ver Fornecedores",
         imagem: EnergySuppliersIcon, 
       },

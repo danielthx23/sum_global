@@ -8,13 +8,20 @@ export async function GET(request: Request, { params }: { params: Promise<{ idPo
 
   try {
     const response = await fetch(`${POST_API_URL}/post/${idPost}`);
+    
+    if (response.status === 404) {
+      return NextResponse.json({ error: 'Post não encontrado.' }, { status: 404 });
+    }
+
     if (!response.ok) {
       throw new Error(`Erro recuperando post por id: ${response.statusText}`);
     }
+
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
+
   } catch (error) {
-    return NextResponse.json({ error: 'Falha recuperando post por id: ' + error }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao recuperar post por id: ' + error }, { status: 500 });
   }
 }
 
@@ -32,12 +39,17 @@ export async function PUT(request: Request, { params }: { params: Promise<{ idPo
       body: JSON.stringify(postData),
     });
 
+    if (response.status === 404) {
+      return NextResponse.json({ error: 'Post não encontrado.' }, { status: 404 });
+    }
+
     if (!response.ok) {
-      throw new Error(`Erro atualizando post: ${response.statusText}`);
+      throw new Error(`Erro ao atualizar post: ${response.statusText}`);
     }
 
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
+
   } catch (error) {
     return NextResponse.json({ error: 'Falha ao atualizar post: ' + error }, { status: 500 });
   }
@@ -51,12 +63,17 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
       method: 'DELETE',
     });
 
+    if (response.status === 404) {
+      return NextResponse.json({ error: 'Post não encontrado.' }, { status: 404 });
+    }
+
     if (!response.ok) {
-      throw new Error(`Falha deletando post: ${response.statusText}`);
+      throw new Error(`Falha ao deletar post: ${response.statusText}`);
     }
 
     return NextResponse.json({ message: 'Post deletado com sucesso!' }, { status: 204 }); 
+
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao deletar post: ' + error }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao deletar post: ' + error}, { status: 500 });
   }
 }

@@ -7,12 +7,18 @@ export async function GET(request: Request, { params }: { params: Promise<{ idUs
 
   try {
     const response = await fetch(`${USER_API_URL}/comentario/usuario/${idUsuario}`);
+    
+    if (response.status === 404) {
+      return NextResponse.json({ error: 'Comentários não encontrados para o usuário.' }, { status: 404 });
+    }
+
     if (!response.ok) {
       throw new Error(`Erro ao recuperar comentarios por idUsuario: ${response.statusText}`);
     }
+    
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao recuperar comentarios por idUsuario: ' + error  }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao recuperar comentarios por idUsuario: ' + error }, { status: 500 });
   }
 }

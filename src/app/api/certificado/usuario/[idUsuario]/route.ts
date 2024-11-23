@@ -18,6 +18,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ idUs
       },
     });
 
+    if (response.status === 404) {
+
+      return NextResponse.json({ error: 'Certificados não encontrados para o usuário.' }, { status: 404 });
+    } 
+
     if (!response.ok) {
       throw new Error(`Erro recuperando certificados: ${response.statusText}`);
     }

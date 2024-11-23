@@ -1,23 +1,28 @@
 import Comentario from '@/types/comentario/comentario.type';
 import { NextResponse } from 'next/server';
 
-const POST_API_URL = process.env.JAVA_API_URL; 
+const POST_API_URL = process.env.JAVA_API_URL;
 
 export async function GET(request: Request, { params }: { params: Promise<{ idComentario: string }> }): Promise<NextResponse> {
   const idComentario = (await params).idComentario;
 
   try {
     const response = await fetch(`${POST_API_URL}/comentario/${idComentario}`);
-    if (!response.ok) {
-      throw new Error(`Erro recuperando comentario por idComentario: ${response.statusText}`);
+    
+    if (response.status === 404) {
+      return NextResponse.json({ error: 'Comentário não encontrado.' }, { status: 404 });
     }
+    
+    if (!response.ok) {
+      throw new Error(`Erro recuperando comentário por idComentario: ${response.statusText}`);
+    }
+    
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao recuperar comentario: ' + error }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao recuperar comentário: ' + error }, { status: 500 });
   }
 }
-
 
 export async function PUT(request: Request, { params }: { params: Promise<{ idComentario: string }> }): Promise<NextResponse> {
   const idComentario = (await params).idComentario;
@@ -37,6 +42,10 @@ export async function PUT(request: Request, { params }: { params: Promise<{ idCo
       body: JSON.stringify(commentData),
     });
 
+    if (response.status === 404) {
+      return NextResponse.json({ error: 'Comentário não encontrado para atualização.' }, { status: 404 });
+    }
+
     if (!response.ok) {
       throw new Error(`Erro atualizando comentário: ${response.statusText}`);
     }
@@ -52,7 +61,7 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
   const idComentario = (await params).idComentario;
 
   if (!idComentario) {
-    return NextResponse.json({ error: 'IdComentário é necessário!' }, { status: 400 });
+    return NextResponse.json({ error: 'IdComentario é necessário!' }, { status: 400 });
   }
 
   try {
@@ -62,6 +71,10 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
         'Content-Type': 'application/json',
       },
     });
+
+    if (response.status === 404) {
+      return NextResponse.json({ error: 'Comentário não encontrado para exclusão.' }, { status: 404 });
+    }
 
     if (!response.ok) {
       throw new Error(`Erro ao deletar comentário: ${response.statusText}`);

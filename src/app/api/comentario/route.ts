@@ -8,7 +8,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     const dataComentario = await request.json();
 
     if (!dataComentario) {
-      return NextResponse.json({ error: 'Conteudo do comentario é necesssário!' }, { status: 400 });
+      return NextResponse.json({ error: 'Conteúdo do comentário é necessário!' }, { status: 400 });
     }
 
     const response = await fetch(`${POST_API_URL}/comentario`, {
@@ -19,6 +19,10 @@ export async function POST(request: Request): Promise<NextResponse> {
       body: JSON.stringify(dataComentario),
     });
 
+    if (response.status === 400) {
+      return NextResponse.json({ error: 'Comentário inválido ou incompleto.' }, { status: 400 });
+    }
+
     if (!response.ok) {
       throw new Error(`Erro ao salvar comentário: ${response.statusText}`);
     }
@@ -26,6 +30,6 @@ export async function POST(request: Request): Promise<NextResponse> {
     const data = await response.json();
     return NextResponse.json(data, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: 'Falha ao salvar comentário: ' + error  }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao salvar comentário: ' + error }, { status: 500 });
   }
 }

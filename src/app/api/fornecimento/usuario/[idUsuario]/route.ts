@@ -11,9 +11,15 @@ export async function GET(request: Request, { params }: { params: Promise<{ idUs
 
   try {
     const response = await fetch(`${POST_API_URL}/fornecimento/usuario/${idUsuario}`);
+
+    if (response.status === 404) {
+      return NextResponse.json({ error: 'Fornecimento não encontrado para o usuário.' }, { status: 404 });
+    }
+
     if (!response.ok) {
       throw new Error(`Erro ao recuperar fornecimento pelo usuario ${idUsuario}: ${response.statusText}`);
     }
+
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
   } catch (error) {

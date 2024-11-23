@@ -15,26 +15,38 @@ const MyCertificados = () => {
 
     useEffect(() => {
         const fetchCertificados = async () => {
-            if (!usuario) return; 
-
-            setLoading(true); 
-
+            if (!usuario) return;
+    
+            setLoading(true);
+    
             try {
                 const response = await fetch(`/api/certificado/usuario/${usuario.idUsuario}`);
+                
+                if (response.status === 404) {
+                    toastAlerta('Nenhum certificado encontrado para este usuário.', 'info');
+                    return; 
+                }
+    
                 if (!response.ok) {
                     throw new Error('Failed to fetch certificados');
                 }
+    
                 const data = await response.json();
-                setFilteredCertificados(data); 
-            } catch (error) {
-                toastAlerta(`Erro recuperando certificados por usuário: ${error}`, 'erro');
+                setFilteredCertificados(data);
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                    toastAlerta(`Falha ao recuperar certificados para o usuário. Erro: ${error.message}`, 'erro');
+                } else {
+                    toastAlerta('Erro desconhecido ao recuperar certificados.', 'erro');
+                }
             } finally {
-                setLoading(false); 
+                setLoading(false);
             }
         };
-
+    
         fetchCertificados();
     }, [usuario]);
+    
 
     if (!usuario?.valorToken) {
         return <SemPermissao/>

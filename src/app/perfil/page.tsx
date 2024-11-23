@@ -37,20 +37,31 @@ const PerfilPage = () => {
 
     const fetchComentariosUsuario = async () => {
       try {
-        setLoading(true)
-        const response = await fetch(`/api/comentario/usuario/${usuario?.idUsuario}`)
-        if (!response.ok) {
-          throw new Error('Falha ao buscar comentarios do usuário.')
-        }
-        const data = await response.json()
-        setComentarios(data)
-        toastAlerta('Dados carregados com sucesso!', 'sucesso') 
-      } catch (error) {
-        toastAlerta('Falha ao carregar comentarios do usuário. Tente novamente: ' + error, 'erro')
+          setLoading(true);
+          const response = await fetch(`/api/comentario/usuario/${usuario?.idUsuario}`);
+  
+          if (response.status === 404) {
+              toastAlerta('Nenhum comentário encontrado para este usuário.', 'info');
+              return; 
+          }
+  
+          if (!response.ok) {
+              throw new Error('Falha ao buscar comentarios do usuário.');
+          }
+  
+          const data = await response.json();
+          setComentarios(data);
+          toastAlerta('Dados carregados com sucesso!', 'sucesso');
+      } catch (error: unknown) {
+          if (error instanceof Error) {
+              toastAlerta('Falha ao carregar comentarios do usuário. Tente novamente: ' + error.message, 'erro');
+          } else {
+              toastAlerta('Erro desconhecido ao carregar comentarios.', 'erro');
+          }
       } finally {
-        setLoading(false)
+          setLoading(false);
       }
-    }
+  };
   
     fetchUserData()
     fetchComentariosUsuario()

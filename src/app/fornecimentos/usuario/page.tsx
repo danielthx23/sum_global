@@ -19,13 +19,24 @@ const MeusFornecimentos = () => {
                 setLoading(true);
                 try {
                     const response = await fetch(`/api/fornecimento/usuario/${usuario.idUsuario}`);
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch posts');
+                    
+                    if (response.status === 404) {
+                        toastAlerta('Nenhum fornecimento encontrado para este usuário.', 'info');
+                        return; 
                     }
+    
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch fornecimentos');
+                    }
+    
                     const data = await response.json();
                     setFilteredFornecimentos(data);
-                } catch (error) {
-                    toastAlerta("Falha ao recuperar Fornecimentos por Usuário: " + error, 'erro')
+                } catch (error: unknown) {
+                    if (error instanceof Error) {
+                        toastAlerta(`Falha ao recuperar fornecimentos por usuário. Erro: ${error.message}`, 'erro');
+                    } else {
+                        toastAlerta('Erro desconhecido ao recuperar fornecimentos.', 'erro');
+                    }
                 } finally {
                     setLoading(false);
                 }
@@ -33,7 +44,7 @@ const MeusFornecimentos = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchUserFornecimentos();
     }, [usuario]);
 

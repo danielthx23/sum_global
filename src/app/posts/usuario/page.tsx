@@ -18,13 +18,24 @@ const MeusPosts = () => {
             if (usuario) {
                 try {
                     const response = await fetch(`/api/post/usuario/${usuario.idUsuario}`);
+    
+                    if (response.status === 404) {
+                        toastAlerta('Nenhum post encontrado para este usuário.', 'info');
+                        return; 
+                    }
+    
                     if (!response.ok) {
                         throw new Error('Failed to fetch posts');
                     }
+    
                     const data = await response.json();
                     setUserPosts(data);
-                } catch (error) {
-                    toastAlerta("Falha ao recuperar Posts por Usuário: " + error, 'erro')
+                } catch (error: unknown) {
+                    if (error instanceof Error) {
+                        toastAlerta(`Falha ao recuperar posts por usuário. Erro: ${error.message}`, 'erro');
+                    } else {
+                        toastAlerta('Erro desconhecido ao recuperar posts.', 'erro');
+                    }
                 } finally {
                     setLoading(false);
                 }
@@ -32,9 +43,10 @@ const MeusPosts = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchUserPosts();
     }, [usuario]);
+    
 
     if (loading) {
         return <Loader classNameWrapper={'h-screen w-full flex flex-col gap-4 items-center justify-center'} classNameLoader={'w-14 h-14'} haveLabel={true} label={'Carregando seus Posts'} />;
